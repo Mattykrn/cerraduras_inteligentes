@@ -9,7 +9,8 @@ import {
 } from 'lucide-react';
 import type { DoorType, AccessMethod, ProductModel, FAQItem, QuoteWizardState } from '@/types';
 
-export const WHATSAPP_PHONE = '5492901525831';
+export const WHATSAPP_PHONE = '5493425546013';
+export const WHATSAPP_DISPLAY = '+54 9 342 554-6013';
 export const INSTAGRAM_URL = 'https://www.instagram.com/cerradurasinteligentesfcp/';
 export const DEFAULT_WA_MESSAGE = '¡Hola KEMA Cerraduras Santa Fe! Quisiera consultar por modelos e instalación a domicilio.';
 
@@ -879,7 +880,7 @@ function Footer({ scrollTo }: FooterProps) {
               rel="noopener noreferrer" 
               className="inline-flex items-center text-sm text-zinc-400 hover:text-emerald-400 transition-colors mb-3"
             >
-              <MessageCircle className="mr-2 w-4 h-4 text-emerald-400" /> +54 9 2901 52-5831
+              <MessageCircle className="mr-2 w-4 h-4 text-emerald-400" /> {WHATSAPP_DISPLAY}
             </a>
             <br/>
             <a 
