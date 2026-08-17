@@ -7,14 +7,21 @@ import {
   ChevronDown, CheckCircle, ArrowRight, Star,
   Menu, X, MessageCircle, MapPin
 } from 'lucide-react';
-import type { DoorType, AccessMethod, ProductModel, FAQItem, QuoteWizardState } from '@/types';
+import type { DoorType, AccessMethod, QuoteWizardState } from '@/types';
+import { 
+  WHATSAPP_PHONE, 
+  WHATSAPP_DISPLAY, 
+  INSTAGRAM_URL, 
+  DEFAULT_WA_MESSAGE, 
+  WHOLESALE_WA_MESSAGE,
+  CATALOG_MODELS, 
+  FAQS_DATA, 
+  TESTIMONIALS_DATA, 
+  DOOR_OPTIONS, 
+  ACCESS_OPTIONS_META 
+} from '@/config/site-data';
 
-export const WHATSAPP_PHONE = '5493425546013';
-export const WHATSAPP_DISPLAY = '+54 9 342 554-6013';
-export const INSTAGRAM_URL = 'https://www.instagram.com/cerradurasinteligentesfcp/';
-export const DEFAULT_WA_MESSAGE = '¡Hola KEMA Locks! 👋 Vi la web con Envío + Colocación GRATIS y quisiera consultar por modelos e instalación a domicilio.';
-
-function InstagramIcon({ className = "w-5 h-5" }: { className?: string }) {
+function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg 
       className={className} 
@@ -49,9 +56,9 @@ export default function LandingPage() {
 
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-zinc-950 flex items-center justify-center text-zinc-500">
+      <div className="min-h-screen bg-zinc-950 flex items-center justify-center text-zinc-500 font-sans">
         <div className="flex items-center space-x-2">
-          <ShieldCheck className="w-6 h-6 animate-pulse text-cyan-500" />
+          <ShieldCheck className="w-5 h-5 animate-pulse text-cyan-500" />
           <span className="text-sm font-medium">Cargando KEMA Locks...</span>
         </div>
       </div>
@@ -68,14 +75,12 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-zinc-950 text-zinc-100 selection:bg-cyan-500/30 selection:text-cyan-100 relative overflow-x-hidden bg-gradient-to-tr from-cyan-950/30 via-zinc-950 to-indigo-950/20">
+    <div className="min-h-screen flex flex-col font-sans bg-zinc-950 text-zinc-100 selection:bg-cyan-500/20 selection:text-cyan-200 relative overflow-x-hidden">
       
-      {/* Background Ambient Lights & Technical Grid */}
+      {/* Subtle Ambient Mask */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900/25 via-transparent to-transparent blur-[100px]"></div>
-        <div className="absolute top-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900/20 via-transparent to-transparent blur-[120px]"></div>
-        <div className="absolute bottom-[-10%] left-[20%] w-[50%] h-[50%] rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-900/15 via-transparent to-transparent blur-[130px]"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293715_1px,transparent_1px),linear-gradient(to_bottom,#1f293715_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-cyan-950/15 blur-[140px] rounded-full"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#27272a08_1px,transparent_1px),linear-gradient(to_bottom,#27272a08_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
       </div>
 
       <Navbar isScrolled={isScrolled} scrollTo={scrollTo} />
@@ -114,20 +119,20 @@ function Navbar({ isScrolled, scrollTo }: NavbarProps) {
 
   return (
     <header className={`fixed top-4 inset-x-0 mx-auto max-w-5xl z-50 transition-all duration-300 px-4 sm:px-6 lg:px-8 ${isScrolled ? 'w-[95%]' : 'w-full'}`}>
-      <div className={`flex justify-between items-center h-16 px-6 rounded-full border transition-all duration-300 ${
+      <div className={`flex justify-between items-center h-14 px-5 rounded-full border transition-all duration-200 ${
         isScrolled 
-        ? 'bg-zinc-900/80 backdrop-blur-xl border-white/[0.12] shadow-2xl shadow-black/80' 
-        : 'bg-zinc-900/40 backdrop-blur-md border-white/[0.08]'
+        ? 'bg-zinc-900/80 backdrop-blur-xl border-zinc-800/80 shadow-lg shadow-black/40' 
+        : 'bg-zinc-900/40 backdrop-blur-md border-zinc-800/40'
       }`}>
         <div className="flex-shrink-0 flex items-center cursor-pointer" onClick={(e) => scrollTo(e, 'cotizador')}>
-          <ShieldCheck className="h-6 w-6 text-cyan-500 mr-2" />
-          <span className="font-bold text-lg tracking-tight text-white">KEMA <span className="text-zinc-400 font-medium">Locks</span></span>
+          <ShieldCheck className="h-5 w-5 text-cyan-400 mr-2" />
+          <span className="font-semibold text-base tracking-tight text-zinc-100">KEMA <span className="text-zinc-500 font-normal">Locks</span></span>
         </div>
         
         <nav className="hidden md:flex space-x-6 items-center">
-          <button type="button" onClick={(e) => scrollTo(e, 'modelos')} className="text-sm font-medium text-zinc-400 hover:text-cyan-400 transition-colors">Modelos</button>
-          <button type="button" onClick={(e) => scrollTo(e, 'como-funciona')} className="text-sm font-medium text-zinc-400 hover:text-cyan-400 transition-colors">Beneficios</button>
-          <button type="button" onClick={(e) => scrollTo(e, 'faq')} className="text-sm font-medium text-zinc-400 hover:text-cyan-400 transition-colors">FAQ</button>
+          <button type="button" onClick={(e) => scrollTo(e, 'modelos')} className="text-xs font-medium text-zinc-400 hover:text-zinc-200 transition-colors">Modelos</button>
+          <button type="button" onClick={(e) => scrollTo(e, 'como-funciona')} className="text-xs font-medium text-zinc-400 hover:text-zinc-200 transition-colors">Beneficios</button>
+          <button type="button" onClick={(e) => scrollTo(e, 'faq')} className="text-xs font-medium text-zinc-400 hover:text-zinc-200 transition-colors">FAQ</button>
           <a 
             href={INSTAGRAM_URL} 
             target="_blank" 
@@ -135,10 +140,14 @@ function Navbar({ isScrolled, scrollTo }: NavbarProps) {
             aria-label="Instagram KEMA Locks"
             className="text-zinc-400 hover:text-pink-400 transition-colors p-1"
           >
-            <InstagramIcon className="w-5 h-5" />
+            <InstagramIcon className="w-4 h-4" />
           </a>
-          <button type="button" onClick={handleNavWhatsApp} className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-semibold px-5 py-2 rounded-full transition-all shadow-[0_0_20px_rgba(6,182,212,0.35)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] active:scale-[0.98] text-sm flex items-center gap-1.5 cursor-pointer">
-            <MessageCircle className="w-4 h-4" />
+          <button 
+            type="button" 
+            onClick={handleNavWhatsApp} 
+            className="bg-zinc-100 hover:bg-white text-zinc-950 font-medium px-4 py-1.5 rounded-full transition-all duration-150 active:scale-[0.98] text-xs flex items-center gap-1.5 shadow-sm cursor-pointer"
+          >
+            <MessageCircle className="w-3.5 h-3.5" />
             <span>Contacto Directo</span>
           </button>
         </nav>
@@ -147,33 +156,33 @@ function Navbar({ isScrolled, scrollTo }: NavbarProps) {
           <button 
             type="button"
             onClick={() => setIsMenuOpen(!isMenuOpen)} 
-            className="text-zinc-300 hover:text-white p-2"
+            className="text-zinc-400 hover:text-zinc-100 p-2"
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
         </div>
       </div>
 
       {/* Mobile menu dropdown */}
-      <div className={`md:hidden absolute top-20 left-4 right-4 rounded-2xl bg-zinc-900/95 backdrop-blur-xl border border-white/[0.1] overflow-hidden transition-all duration-300 origin-top ${
+      <div className={`md:hidden absolute top-16 left-4 right-4 rounded-2xl bg-zinc-900/95 backdrop-blur-xl border border-zinc-800/80 overflow-hidden transition-all duration-200 origin-top ${
         isMenuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'
       }`}>
         <div className="px-4 py-5 space-y-4 flex flex-col text-left">
-          <button type="button" onClick={(e) => { setIsMenuOpen(false); scrollTo(e, 'modelos'); }} className="text-left text-zinc-300 hover:text-white font-medium">Modelos</button>
-          <button type="button" onClick={(e) => { setIsMenuOpen(false); scrollTo(e, 'como-funciona'); }} className="text-left text-zinc-300 hover:text-white font-medium">Beneficios</button>
-          <button type="button" onClick={(e) => { setIsMenuOpen(false); scrollTo(e, 'faq'); }} className="text-left text-zinc-300 hover:text-white font-medium">FAQ</button>
+          <button type="button" onClick={(e) => { setIsMenuOpen(false); scrollTo(e, 'modelos'); }} className="text-left text-zinc-300 hover:text-white text-sm font-medium">Modelos</button>
+          <button type="button" onClick={(e) => { setIsMenuOpen(false); scrollTo(e, 'como-funciona'); }} className="text-left text-zinc-300 hover:text-white text-sm font-medium">Beneficios</button>
+          <button type="button" onClick={(e) => { setIsMenuOpen(false); scrollTo(e, 'faq'); }} className="text-left text-zinc-300 hover:text-white text-sm font-medium">FAQ</button>
           <a 
             href={INSTAGRAM_URL} 
             target="_blank" 
             rel="noopener noreferrer" 
             onClick={() => setIsMenuOpen(false)}
-            className="text-left text-zinc-300 hover:text-pink-400 font-medium flex items-center gap-2"
+            className="text-left text-zinc-300 hover:text-pink-400 text-sm font-medium flex items-center gap-2"
           >
-            <InstagramIcon className="w-5 h-5 text-pink-400" /> Instagram
+            <InstagramIcon className="w-4 h-4 text-pink-400" /> Instagram
           </a>
-          <button type="button" onClick={() => { setIsMenuOpen(false); handleNavWhatsApp(); }} className="bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-bold py-3 rounded-xl mt-2 w-full text-center flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20">
-            <MessageCircle className="w-5 h-5" />
+          <button type="button" onClick={() => { setIsMenuOpen(false); handleNavWhatsApp(); }} className="bg-zinc-100 text-zinc-950 font-medium py-2.5 rounded-xl mt-2 w-full text-center flex items-center justify-center gap-2 text-xs shadow-sm">
+            <MessageCircle className="w-4 h-4" />
             Contacto Directo WhatsApp
           </button>
         </div>
@@ -191,87 +200,92 @@ interface HeroBentoProps {
 
 function HeroBento({ scrollTo }: HeroBentoProps) {
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 relative">
-      {/* Hero Atmospheric Glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-gradient-to-tr from-cyan-500/15 to-blue-600/10 blur-[130px] rounded-full pointer-events-none -z-10" />
-
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 auto-rows-auto relative z-10">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-14 relative">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-5 auto-rows-auto relative z-10">
         
         {/* Main Title Block */}
-        <div className="col-span-1 md:col-span-2 lg:col-span-3 border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-8 lg:p-12 flex flex-col justify-center relative overflow-hidden group hover:border-cyan-400/40 hover:bg-zinc-900/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] hover:-translate-y-1 transition-all duration-300 ease-out">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl group-hover:bg-cyan-500/20 transition-all duration-700"></div>
+        <div className="col-span-1 md:col-span-2 lg:col-span-3 border border-zinc-800/80 bg-zinc-900/30 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] rounded-3xl p-8 lg:p-11 flex flex-col justify-center relative overflow-hidden group hover:border-zinc-700 hover:bg-zinc-900/60 transition-colors duration-200">
           
           <div className="flex flex-wrap gap-2 mb-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium bg-cyan-950/50 text-cyan-300 border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-xs font-medium bg-zinc-900 border border-zinc-800 text-zinc-300">
               🤝 Distribuidor Oficial
-            </div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium bg-amber-950/50 text-amber-300 border border-amber-500/30 shadow-[0_0_15px_rgba(245,158,11,0.15)]">
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-xs font-medium bg-zinc-900 border border-zinc-800 text-zinc-300">
               📦 Stock disponible inmediato
-            </div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-950/60 text-emerald-300 border border-emerald-500/40 shadow-[0_0_15px_rgba(16,185,129,0.25)] animate-pulse">
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-xs font-medium bg-emerald-950/40 border border-emerald-500/40 text-emerald-300">
               🚚 Envío + Colocación GRATIS
-            </div>
+            </span>
           </div>
           
-          <div className="inline-flex items-center text-sm font-semibold text-cyan-400 mb-2">
-            🔐 Convertí tu puerta en inteligente
+          <div className="text-[11px] font-mono uppercase tracking-widest text-zinc-400 mb-2 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            Convertí tu puerta en inteligente
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight mb-6">
-            Seguridad inteligente, <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-zinc-100 to-zinc-400 tracking-tight">sin complicaciones.</span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6 text-zinc-100">
+            <span className="bg-clip-text text-transparent bg-gradient-to-b from-zinc-100 via-zinc-200 to-zinc-400">Seguridad inteligente,</span> <br />
+            <span className="text-zinc-400 font-normal">sin complicaciones.</span>
           </h1>
-          <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mb-8 leading-relaxed">
+          <p className="text-zinc-400 text-sm md:text-base leading-relaxed max-w-2xl mb-8">
             Distribuidor oficial KEMA en Argentina. Instalación impecable, asesoramiento personalizado y garantía directa en cerraduras digitales para puertas de madera, aluminio, chapa y blindex.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4">
-            <button type="button" onClick={(e) => scrollTo(e, 'cotizador')} className="inline-flex justify-center items-center px-8 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-semibold shadow-[0_0_20px_rgba(6,182,212,0.35)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] active:scale-[0.98] transition-all duration-300 cursor-pointer">
-              Calcular Presupuesto <ArrowRight className="ml-2 w-5 h-5" />
+          <div className="flex flex-col sm:flex-row gap-3">
+            <button 
+              type="button" 
+              onClick={(e) => scrollTo(e, 'cotizador')} 
+              className="bg-zinc-100 hover:bg-white text-zinc-950 font-medium px-6 py-3 rounded-xl transition-all duration-150 active:scale-[0.98] shadow-sm flex items-center justify-center gap-2 cursor-pointer text-sm"
+            >
+              Calcular Presupuesto <ArrowRight className="w-4 h-4" />
             </button>
-            <button type="button" onClick={(e) => scrollTo(e, 'modelos')} className="inline-flex justify-center items-center px-8 py-3.5 rounded-xl bg-zinc-800/60 text-white font-medium border border-zinc-700/60 hover:bg-zinc-800 transition-all duration-300 cursor-pointer">
+            <button 
+              type="button" 
+              onClick={(e) => scrollTo(e, 'modelos')} 
+              className="bg-transparent hover:bg-zinc-900 text-zinc-300 hover:text-white border border-zinc-800 rounded-xl px-6 py-3 text-sm transition-colors cursor-pointer font-medium"
+            >
               Ver Catálogo KEMA
             </button>
           </div>
         </div>
 
         {/* Metric Block */}
-        <div className="border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-8 flex flex-col justify-center items-center text-center hover:border-cyan-400/40 hover:bg-zinc-900/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] hover:-translate-y-1 transition-all duration-300 ease-out group">
-          <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 to-blue-600 mb-2 group-hover:scale-110 transition-transform duration-500">+500</div>
-          <div className="text-zinc-400 font-medium">Instalaciones Exitosas</div>
+        <div className="border border-zinc-800/80 bg-zinc-900/30 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] rounded-3xl p-8 flex flex-col justify-center items-center text-center hover:border-zinc-700 hover:bg-zinc-900/60 transition-colors duration-200 group">
+          <div className="text-4xl font-bold tracking-tight text-zinc-100 mb-1 group-hover:scale-105 transition-transform duration-300">+500</div>
+          <div className="text-zinc-400 text-xs font-medium">Instalaciones Exitosas</div>
         </div>
 
         {/* Feature Block 1 */}
-        <div className="border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-6 flex items-start space-x-4 hover:border-cyan-400/40 hover:bg-zinc-900/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] hover:-translate-y-1 transition-all duration-300 ease-out">
-          <div className="bg-zinc-800/80 p-3 rounded-2xl border border-zinc-700">
-            <Wrench className="w-6 h-6 text-cyan-400" />
+        <div className="border border-zinc-800/80 bg-zinc-900/30 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] rounded-3xl p-6 flex items-start space-x-4 hover:border-zinc-700 hover:bg-zinc-900/60 transition-colors duration-200">
+          <div className="bg-zinc-900 p-2.5 rounded-xl border border-zinc-800 text-cyan-400">
+            <Wrench className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-white font-bold mb-1">Sin Daños</h3>
-            <p className="text-sm text-zinc-400">Perforación milimétrica y prolija.</p>
+            <h3 className="text-zinc-200 font-medium text-sm mb-0.5">Sin Daños</h3>
+            <p className="text-xs text-zinc-400">Perforación milimétrica y prolija.</p>
           </div>
         </div>
 
         {/* Feature Block 2 */}
-        <div className="border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-6 flex items-start space-x-4 hover:border-cyan-400/40 hover:bg-zinc-900/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] hover:-translate-y-1 transition-all duration-300 ease-out">
-          <div className="bg-zinc-800/80 p-3 rounded-2xl border border-zinc-700">
-            <ShieldCheck className="w-6 h-6 text-emerald-400" />
+        <div className="border border-zinc-800/80 bg-zinc-900/30 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] rounded-3xl p-6 flex items-start space-x-4 hover:border-zinc-700 hover:bg-zinc-900/60 transition-colors duration-200">
+          <div className="bg-zinc-900 p-2.5 rounded-xl border border-zinc-800 text-emerald-400">
+            <ShieldCheck className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-white font-bold mb-1">Garantía Real</h3>
-            <p className="text-sm text-zinc-400">Soporte técnico y repuestos.</p>
+            <h3 className="text-zinc-200 font-medium text-sm mb-0.5">Garantía Real</h3>
+            <p className="text-xs text-zinc-400">Soporte técnico y repuestos.</p>
           </div>
         </div>
 
         {/* Image/Visual Block */}
-        <div className="col-span-1 md:col-span-2 border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-2 relative overflow-hidden min-h-[200px] group hover:border-cyan-400/40 hover:bg-zinc-900/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] hover:-translate-y-1 transition-all duration-300 ease-out">
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent z-10 rounded-3xl"></div>
-          <Image src="/hero.png" alt="Instalación Premium KEMA" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover rounded-2xl opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" />
-          <div className="absolute bottom-6 left-6 z-20">
-            <div className="flex items-center space-x-2 text-white font-medium bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
-              <span className="relative flex h-2.5 w-2.5">
+        <div className="col-span-1 md:col-span-2 border border-zinc-800/80 bg-zinc-900/30 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] rounded-3xl p-2 relative overflow-hidden min-h-[190px] group hover:border-zinc-700 hover:bg-zinc-900/60 transition-colors duration-200">
+          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent z-10 rounded-3xl"></div>
+          <Image src="/hero.png" alt="Instalación Premium KEMA" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover rounded-2xl opacity-50 group-hover:opacity-75 group-hover:scale-105 transition-all duration-500" />
+          <div className="absolute bottom-5 left-5 z-20">
+            <div className="flex items-center space-x-2 text-xs text-zinc-300 bg-zinc-950/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-zinc-800">
+              <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
               <span>App Lista para Usar</span>
             </div>
@@ -285,17 +299,6 @@ function HeroBento({ scrollTo }: HeroBentoProps) {
 // ==========================================
 // LEAD WIZARD
 // ==========================================
-interface DoorOption {
-  label: string;
-  value: DoorType;
-}
-
-interface AccessOption {
-  label: string;
-  value: AccessMethod;
-  icon: React.ReactNode;
-}
-
 function LeadWizard() {
   const [wizardState, setWizardState] = useState<QuoteWizardState>({
     step: 1,
@@ -304,20 +307,6 @@ function LeadWizard() {
     city: '',
     selectedModel: null,
   });
-
-  const doorOptions: DoorOption[] = [
-    { label: 'Madera', value: 'madera' },
-    { label: 'Chapa / Metal', value: 'metal' },
-    { label: 'Aluminio (Perfil)', value: 'aluminio' },
-    { label: 'Vidrio / Blindex', value: 'blindex' },
-  ];
-
-  const accessOptions: AccessOption[] = [
-    { label: 'Huella Digital', value: 'huella', icon: <Fingerprint className="w-5 h-5" /> },
-    { label: 'Código PIN', value: 'pin', icon: <Key className="w-5 h-5" /> },
-    { label: 'App WiFi / Bluetooth', value: 'app', icon: <Smartphone className="w-5 h-5" /> },
-    { label: 'Tarjeta RFID', value: 'tarjeta', icon: <ShieldCheck className="w-5 h-5" /> },
-  ];
 
   const selectDoorType = (value: DoorType) => {
     setWizardState((prev) => ({
@@ -381,26 +370,34 @@ function LeadWizard() {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
-  return (
-    <section id="cotizador" className="py-20 relative">
-      {/* Wizard Atmospheric Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-emerald-500/10 blur-[140px] rounded-full pointer-events-none -z-10" />
+  const renderAccessIcon = (iconName: string, active: boolean) => {
+    const cls = active ? "w-5 h-5 text-cyan-400" : "w-5 h-5 text-zinc-400 group-hover:text-zinc-200";
+    switch (iconName) {
+      case 'fingerprint': return <Fingerprint className={cls} />;
+      case 'key': return <Key className={cls} />;
+      case 'smartphone': return <Smartphone className={cls} />;
+      case 'shield': return <ShieldCheck className={cls} />;
+      default: return <Key className={cls} />;
+    }
+  };
 
+  return (
+    <section id="cotizador" className="py-16 relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-950/60 text-emerald-300 border border-emerald-500/40 shadow-[0_0_15px_rgba(16,185,129,0.25)] animate-pulse mb-4">
-            🚚 Envío + Colocación GRATIS
-          </div>
-          <h2 className="text-3xl font-extrabold sm:text-4xl mb-4 bg-clip-text text-transparent bg-gradient-to-b from-white via-zinc-100 to-zinc-400 tracking-tight">Descubre tu modelo ideal en 3 pasos</h2>
-          <p className="text-zinc-400 max-w-2xl mx-auto">Selecciona las opciones para armar tu presupuesto personalizado de equipo KEMA + envío e instalación en todo el país.</p>
+        <div className="text-center mb-9">
+          <div className="text-[11px] font-mono uppercase tracking-widest text-zinc-400 mb-2">Filtro Rápido</div>
+          <h2 className="text-3xl font-semibold tracking-tight text-zinc-100 sm:text-4xl mb-3">
+            <span className="bg-clip-text text-transparent bg-gradient-to-b from-zinc-100 via-zinc-200 to-zinc-400">Descubre tu modelo ideal en 3 pasos</span>
+          </h2>
+          <p className="text-zinc-400 text-sm leading-relaxed max-w-2xl mx-auto">Selecciona las opciones para armar tu presupuesto personalizado con Envío + Colocación GRATIS en todo el país.</p>
         </div>
 
-        <div className="border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-6 md:p-10 relative overflow-hidden hover:border-cyan-400/40 hover:bg-zinc-900/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] transition-all duration-300 ease-out">
+        <div className="border border-zinc-800/80 bg-zinc-900/30 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] rounded-3xl p-6 md:p-10 relative overflow-hidden">
           {/* Progress Bar */}
           <div className="flex justify-between items-center mb-10 relative px-2">
-            <div className="absolute top-1/2 left-4 right-4 h-1 bg-zinc-800 -z-10 -translate-y-1/2 rounded-full"></div>
+            <div className="absolute top-1/2 left-4 right-4 h-0.5 bg-zinc-800 -z-10 -translate-y-1/2 rounded-full"></div>
             <div 
-              className="absolute top-1/2 left-4 h-1 bg-gradient-to-r from-cyan-600 to-cyan-400 -z-10 -translate-y-1/2 rounded-full transition-all duration-500 ease-out" 
+              className="absolute top-1/2 left-4 h-0.5 bg-cyan-500 -z-10 -translate-y-1/2 rounded-full transition-all duration-300 ease-out" 
               style={{ width: wizardState.step === 1 ? '0%' : wizardState.step === 2 ? '48%' : 'calc(100% - 2rem)' }}
             ></div>
             
@@ -410,92 +407,98 @@ function LeadWizard() {
                 type="button"
                 onClick={() => handleStepClick(i)}
                 disabled={i > wizardState.step}
-                className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm border-2 transition-all duration-300 ${
-                  wizardState.step === i ? 'bg-cyan-500 border-cyan-400 text-zinc-950 scale-110 shadow-[0_0_15px_rgba(6,182,212,0.5)]' : 
-                  wizardState.step > i ? 'bg-cyan-900/50 border-cyan-500 text-cyan-400 cursor-pointer hover:bg-cyan-800/50' : 
-                  'bg-zinc-900 border-zinc-700 text-zinc-600 cursor-not-allowed'
+                className={`w-9 h-9 rounded-full flex items-center justify-center font-semibold text-xs border transition-all duration-200 ${
+                  wizardState.step === i ? 'bg-cyan-500 border-cyan-400 text-zinc-950 shadow-sm' : 
+                  wizardState.step > i ? 'bg-zinc-900 border-cyan-500/60 text-cyan-400 cursor-pointer hover:bg-zinc-800' : 
+                  'bg-zinc-950 border-zinc-800 text-zinc-600 cursor-not-allowed'
                 }`}
               >
-                {wizardState.step > i ? <CheckCircle className="w-5 h-5" /> : i}
+                {wizardState.step > i ? <CheckCircle className="w-4 h-4" /> : i}
               </button>
             ))}
           </div>
 
-          <div className="min-h-[260px] flex flex-col justify-center relative">
+          <div className="min-h-[240px] flex flex-col justify-center relative">
             {wizardState.step === 1 && (
-              <div className="animate-in fade-in slide-in-from-right-8 duration-300 ease-in-out">
-                <h3 className="text-xl font-bold text-white mb-6 text-center flex items-center justify-center">
+              <div className="animate-in fade-in slide-in-from-right-4 duration-200">
+                <h3 className="text-lg font-medium text-zinc-100 mb-6 text-center">
                   ¿De qué material es tu puerta principal?
                 </h3>
                 <div className="grid grid-cols-2 gap-3 md:gap-4">
-                  {doorOptions.map(option => (
-                    <button 
-                      key={option.value} 
-                      type="button"
-                      onClick={() => selectDoorType(option.value)} 
-                      className={`p-4 md:p-5 rounded-2xl border transition-all duration-200 text-sm md:text-base font-medium flex items-center justify-between group ${
-                        wizardState.doorType === option.value 
-                        ? 'bg-cyan-950/40 border-cyan-500 text-white ring-1 ring-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.15)]' 
-                        : 'bg-zinc-800/40 border-zinc-700/60 text-zinc-300 hover:bg-zinc-800 hover:border-cyan-500/50 hover:text-white'
-                      }`}
-                    >
-                      {option.label}
-                      <div className={`w-4 h-4 rounded-full border flex-shrink-0 transition-colors ${wizardState.doorType === option.value ? 'border-cyan-400 bg-cyan-500' : 'border-zinc-500 group-hover:border-cyan-500/50'}`}></div>
-                    </button>
-                  ))}
+                  {DOOR_OPTIONS.map(option => {
+                    const isSelected = wizardState.doorType === option.value;
+                    return (
+                      <button 
+                        key={option.value} 
+                        type="button"
+                        onClick={() => selectDoorType(option.value)} 
+                        className={`p-4 md:p-5 rounded-2xl border transition-all duration-150 text-sm font-medium flex items-center justify-between group cursor-pointer ${
+                          isSelected 
+                          ? 'bg-cyan-950/20 border-cyan-500/60 text-cyan-200 shadow-[inset_0_0_12px_rgba(6,182,212,0.1)]' 
+                          : 'bg-zinc-900/20 border-zinc-800/80 text-zinc-400 hover:text-zinc-200 hover:border-zinc-700'
+                        }`}
+                      >
+                        {option.label}
+                        <div className={`w-3.5 h-3.5 rounded-full border transition-colors ${isSelected ? 'border-cyan-400 bg-cyan-500' : 'border-zinc-700 group-hover:border-zinc-500'}`}></div>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             )}
 
             {wizardState.step === 2 && (
-              <div className="animate-in fade-in slide-in-from-right-8 duration-300 ease-in-out">
-                <h3 className="text-xl font-bold text-white mb-6 text-center">¿Cómo te gustaría abrir la puerta principalmente?</h3>
+              <div className="animate-in fade-in slide-in-from-right-4 duration-200">
+                <h3 className="text-lg font-medium text-zinc-100 mb-6 text-center">¿Cómo te gustaría abrir la puerta principalmente?</h3>
                 <div className="grid grid-cols-2 gap-3 md:gap-4">
-                  {accessOptions.map(option => (
-                    <button 
-                      key={option.value} 
-                      type="button"
-                      onClick={() => selectAccessMethod(option.value)} 
-                      className={`p-4 md:p-5 rounded-2xl border transition-all duration-200 text-sm md:text-base font-medium flex flex-col sm:flex-row items-center sm:justify-start gap-3 group ${
-                        wizardState.accessMethod === option.value 
-                        ? 'bg-cyan-950/40 border-cyan-500 text-white ring-1 ring-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.15)]' 
-                        : 'bg-zinc-800/40 border-zinc-700/60 text-zinc-300 hover:bg-zinc-800 hover:border-cyan-500/50 hover:text-white'
-                      }`}
-                    >
-                      <div className={`p-2 rounded-lg transition-colors ${wizardState.accessMethod === option.value ? 'bg-cyan-500/20 text-cyan-400' : 'bg-zinc-700/50 text-zinc-400 group-hover:text-cyan-400'}`}>
-                        {option.icon}
-                      </div>
-                      <span className="text-center sm:text-left">{option.label}</span>
-                    </button>
-                  ))}
+                  {ACCESS_OPTIONS_META.map(option => {
+                    const isSelected = wizardState.accessMethod === option.value;
+                    return (
+                      <button 
+                        key={option.value} 
+                        type="button"
+                        onClick={() => selectAccessMethod(option.value)} 
+                        className={`p-4 md:p-5 rounded-2xl border transition-all duration-150 text-sm font-medium flex flex-col sm:flex-row items-center sm:justify-start gap-3 group cursor-pointer ${
+                          isSelected 
+                          ? 'bg-cyan-950/20 border-cyan-500/60 text-cyan-200 shadow-[inset_0_0_12px_rgba(6,182,212,0.1)]' 
+                          : 'bg-zinc-900/20 border-zinc-800/80 text-zinc-400 hover:text-zinc-200 hover:border-zinc-700'
+                        }`}
+                      >
+                        <div className="p-1.5 rounded-lg">
+                          {renderAccessIcon(option.iconName, isSelected)}
+                        </div>
+                        <span className="text-center sm:text-left">{option.label}</span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             )}
 
             {wizardState.step === 3 && (
-              <div className="animate-in fade-in slide-in-from-right-8 duration-300 ease-in-out">
-                <h3 className="text-xl font-bold text-white mb-6 text-center">¿En qué ciudad / provincia te encuentras?</h3>
+              <div className="animate-in fade-in slide-in-from-right-4 duration-200">
+                <h3 className="text-lg font-medium text-zinc-100 mb-6 text-center">¿En qué ciudad / provincia te encuentras?</h3>
                 <form onSubmit={handleQuoteSubmit} className="max-w-md mx-auto w-full">
-                  <div className="relative mb-6">
-                    <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
+                  <div className="relative mb-5">
+                    <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
                     <input 
                       type="text" 
                       placeholder="Ej: Córdoba, Rosario, Buenos Aires..." 
                       value={wizardState.city}
                       onChange={(e) => setCity(e.target.value)}
-                      className="w-full bg-zinc-900/80 border border-zinc-700 rounded-xl pl-12 pr-4 py-4 text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-zinc-600"
+                      className="bg-zinc-900/50 border border-zinc-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30 rounded-xl pl-11 pr-4 py-3 text-zinc-100 placeholder:text-zinc-500 outline-none transition-all text-sm w-full"
                     />
                   </div>
                   <button 
                     type="submit"
                     disabled={wizardState.city.trim().length < 2}
-                    className={`w-full flex items-center justify-center px-6 py-4 rounded-xl font-bold transition-all duration-300 ${
+                    className={`w-full flex items-center justify-center px-5 py-3 rounded-xl font-medium transition-all duration-150 active:scale-[0.98] shadow-sm text-sm gap-2 ${
                       wizardState.city.trim().length >= 2 
-                      ? 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-semibold shadow-[0_0_20px_rgba(6,182,212,0.35)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] active:scale-[0.98] cursor-pointer' 
-                      : 'bg-zinc-800/80 text-zinc-500 cursor-not-allowed border border-zinc-700/50'
+                      ? 'bg-zinc-100 hover:bg-white text-zinc-950 cursor-pointer' 
+                      : 'bg-zinc-900/50 text-zinc-600 border border-zinc-800/80 cursor-not-allowed'
                     }`}
                   >
-                    <MessageCircle className="mr-2 w-5 h-5" />
+                    <MessageCircle className="w-4 h-4" />
                     Cotizar ahora por WhatsApp
                   </button>
                   <p className="text-center text-xs text-zinc-500 mt-4">
@@ -506,12 +509,12 @@ function LeadWizard() {
             )}
           </div>
           
-          <div className="mt-6 flex justify-center h-8">
+          <div className="mt-5 flex justify-center h-7">
             {wizardState.step > 1 && (
               <button 
                 type="button"
                 onClick={() => setWizardState((prev) => ({ ...prev, step: prev.step - 1 }))} 
-                className="text-sm font-medium text-zinc-500 hover:text-white flex items-center transition-colors px-4 py-2 rounded-lg hover:bg-zinc-800/50"
+                className="text-xs font-medium text-zinc-500 hover:text-zinc-200 flex items-center transition-colors px-3 py-1.5 rounded-lg hover:bg-zinc-900 cursor-pointer"
               >
                 ← Volver al paso anterior
               </button>
@@ -527,39 +530,6 @@ function LeadWizard() {
 // CATALOG BENTO
 // ==========================================
 function Catalog() {
-  const models: (ProductModel & { badgeColor: string })[] = [
-    {
-      id: 'kema-one',
-      badge: 'Más Vendido',
-      badgeColor: 'bg-cyan-500',
-      name: 'KEMA-One Pro',
-      image: '/app.png',
-      features: ['Huella 3D ultra rápida', 'Batería: 8-12 meses', 'App WiFi & Bluetooth'],
-      priceReference: 'Consultar',
-      doorCompatibility: ['madera', 'metal', 'aluminio'],
-    },
-    {
-      id: 'slim-glass-pro',
-      badge: 'Especial Blindex',
-      badgeColor: 'bg-indigo-500',
-      name: 'KEMA Slim-Glass Pro',
-      image: '/hero.png',
-      features: ['Instalación sin perforar', 'Historial de accesos', 'Cierre automático'],
-      priceReference: 'Consultar',
-      doorCompatibility: ['blindex'],
-    },
-    {
-      id: 'titanium-x',
-      badge: 'Exterior Resistente',
-      badgeColor: 'bg-emerald-500',
-      name: 'KEMA Titanium X',
-      image: '/app.png',
-      features: ['IP65 contra lluvia', 'Chasis reforzado', 'Ideal casas y portones'],
-      priceReference: 'Consultar',
-      doorCompatibility: ['madera', 'metal'],
-    }
-  ];
-
   const handleStockConsult = (modelName: string) => {
     const message = `¡Hola KEMA Locks! 👋 Vi la web con Envío + Colocación GRATIS y me interesa consultar disponibilidad y precio del modelo ${modelName}`;
     const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(message)}`;
@@ -567,49 +537,52 @@ function Catalog() {
   };
 
   return (
-    <section id="modelos" className="py-20 relative">
+    <section id="modelos" className="py-16 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
           <div>
-            <h2 className="text-3xl font-extrabold sm:text-4xl bg-clip-text text-transparent bg-gradient-to-b from-white via-zinc-100 to-zinc-400 tracking-tight">Catálogo de Equipos KEMA</h2>
-            <p className="mt-2 text-zinc-400 max-w-2xl">Modelos de alta confiabilidad testeados en campo. Incluyen garantía oficial KEMA y soporte técnico.</p>
+            <div className="text-[11px] font-mono uppercase tracking-widest text-zinc-400 mb-2">Garantía Directa</div>
+            <h2 className="text-3xl font-semibold tracking-tight text-zinc-100 sm:text-4xl">
+              <span className="bg-clip-text text-transparent bg-gradient-to-b from-zinc-100 via-zinc-200 to-zinc-400">Catálogo de Equipos KEMA</span>
+            </h2>
+            <p className="mt-2 text-zinc-400 text-sm max-w-2xl">Modelos de alta confiabilidad testeados en campo. Incluyen garantía oficial KEMA y soporte técnico.</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {models.map((product) => (
-            <div key={product.id} className="border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl overflow-hidden hover:border-cyan-400/40 hover:bg-zinc-900/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] hover:-translate-y-1 transition-all duration-300 ease-out group flex flex-col">
-              <div className="relative h-64 w-full bg-zinc-800/50 overflow-hidden p-4">
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/90 to-transparent z-10"></div>
-                <Image src={product.image} alt={product.name} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover object-center opacity-80 group-hover:scale-110 group-hover:opacity-100 transition-all duration-700" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {CATALOG_MODELS.map((product) => (
+            <div key={product.id} className="border border-zinc-800/80 bg-zinc-900/30 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] rounded-3xl overflow-hidden hover:border-zinc-700 hover:bg-zinc-900/60 transition-colors duration-200 group flex flex-col">
+              <div className="relative h-60 w-full bg-zinc-900/50 overflow-hidden p-4">
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent z-10"></div>
+                <Image src={product.image} alt={product.name} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover object-center opacity-70 group-hover:scale-105 group-hover:opacity-90 transition-all duration-500" />
                 {product.badge && (
-                  <div className={`absolute top-4 left-4 z-20 ${product.badgeColor} text-white text-xs font-bold px-3 py-1.5 rounded-full tracking-wide shadow-lg`}>
+                  <div className={`absolute top-4 left-4 z-20 ${product.badgeColor} text-xs font-medium px-2.5 py-1 rounded-md shadow-sm`}>
                     {product.badge}
                   </div>
                 )}
               </div>
               
-              <div className="p-6 flex-grow flex flex-col relative z-20 bg-zinc-900/60">
-                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-cyan-400 transition-colors">{product.name}</h3>
-                <ul className="space-y-3 mb-8 flex-grow text-sm text-zinc-400 font-medium">
+              <div className="p-6 flex-grow flex flex-col relative z-20 bg-zinc-900/40">
+                <h3 className="text-xl font-semibold text-zinc-100 mb-3 group-hover:text-cyan-400 transition-colors">{product.name}</h3>
+                <ul className="space-y-2.5 mb-6 flex-grow text-xs text-zinc-400 font-medium">
                   {product.features.map((feat, i) => (
                     <li key={i} className="flex items-center">
-                      <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 mr-3"></div>
+                      <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 mr-2.5"></div>
                       <span>{feat}</span>
                     </li>
                   ))}
                 </ul>
-                <div className="pt-5 border-t border-zinc-800/80">
-                  <p className="text-xs text-emerald-400 mb-3 uppercase tracking-wider font-extrabold flex items-center gap-1">
-                    <span>🚚 Envío + Colocación GRATIS</span>
+                <div className="pt-4 border-t border-zinc-800/80">
+                  <p className="text-[11px] font-mono text-emerald-400 mb-3 uppercase tracking-wider font-semibold">
+                    🚚 Envío + Colocación GRATIS
                   </p>
                   <button 
                     type="button"
                     onClick={() => handleStockConsult(product.name)}
-                    className="w-full flex justify-between items-center bg-zinc-800/80 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-600 hover:text-black text-white px-5 py-3.5 rounded-xl font-bold transition-all duration-300 active:scale-95 cursor-pointer shadow-md"
+                    className="w-full flex justify-between items-center bg-zinc-900 hover:bg-zinc-100 hover:text-zinc-950 text-zinc-200 border border-zinc-800 hover:border-zinc-100 px-4 py-2.5 rounded-xl font-medium transition-all duration-150 text-xs cursor-pointer"
                   >
                     <span>Consultar Stock</span>
-                    <ArrowRight className="w-5 h-5" />
+                    <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
               </div>
@@ -624,46 +597,42 @@ function Catalog() {
 // ==========================================
 // VALUE PROPOSITION
 // ==========================================
-interface ValuePropItem {
-  icon: React.ReactNode;
-  title: string;
-  desc: string;
-}
-
 function ValueProposition() {
-  const valueProps: ValuePropItem[] = [
+  const valueProps = [
     {
-      icon: <Wrench className="h-7 w-7 text-cyan-400" />,
+      icon: <Wrench className="h-6 w-6 text-cyan-400" />,
       title: 'Cero Daños',
       desc: 'Herramientas específicas para no astillar madera ni rallar aluminio. Ajuste milimétrico garantizado.'
     },
     {
-      icon: <Smartphone className="h-7 w-7 text-indigo-400" />,
+      icon: <Smartphone className="h-6 w-6 text-indigo-400" />,
       title: 'App Configurada',
       desc: 'Registro de administrador, alta de huellas y prueba de tarjetas en el acto. Lista para usar.'
     },
     {
-      icon: <Battery className="h-7 w-7 text-emerald-400" />,
+      icon: <Battery className="h-6 w-6 text-emerald-400" />,
       title: 'Capacitación Total',
       desc: 'Te explico cómo cargarla, usar la llave de emergencia y mantenerla óptima por años.'
     }
   ];
 
   return (
-    <section id="como-funciona" className="py-20">
+    <section id="como-funciona" className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-extrabold sm:text-4xl bg-clip-text text-transparent bg-gradient-to-b from-white via-zinc-100 to-zinc-400 tracking-tight">Por qué elegir un instalador oficial KEMA</h2>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-semibold tracking-tight text-zinc-100">
+            <span className="bg-clip-text text-transparent bg-gradient-to-b from-zinc-100 via-zinc-200 to-zinc-400">Por qué elegir un instalador oficial KEMA</span>
+          </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {valueProps.map((item, idx) => (
-            <div key={idx} className="border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-8 hover:border-cyan-400/40 hover:bg-zinc-900/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] hover:-translate-y-1 transition-all duration-300 ease-out group">
-              <div className="bg-zinc-950 border border-zinc-800 rounded-2xl p-4 inline-flex mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+            <div key={idx} className="border border-zinc-800/80 bg-zinc-900/30 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] rounded-3xl p-7 hover:border-zinc-700 hover:bg-zinc-900/60 transition-colors duration-200 group">
+              <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 inline-flex mb-5 group-hover:scale-105 transition-transform duration-200">
                 {item.icon}
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
-              <p className="text-zinc-400 leading-relaxed">{item.desc}</p>
+              <h3 className="text-lg font-medium text-zinc-100 mb-2">{item.title}</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -675,36 +644,27 @@ function ValueProposition() {
 // ==========================================
 // GALLERY & TESTIMONIALS
 // ==========================================
-interface TestimonialItem {
-  name: string;
-  role: string;
-  text: string;
-}
-
 function Gallery() {
-  const testimonials: TestimonialItem[] = [
-    { name: 'Marcos R.', role: 'Consorcio Residencial', text: 'Impecable. Vino en horario, no ensució nada y nos dejó la cerradura KEMA funcionando con clave para cada vecino.' },
-    { name: 'Luciana G.', role: 'Airbnb Host & Departamentos', text: 'Me resolvió el tema de las llaves perdidas. Ahora genero un código por reserva desde mi celular y listo. Servicio de 10.' }
-  ];
-
   return (
-    <section className="py-20 relative">
+    <section className="py-16 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           
-          <div className="order-2 lg:order-1 space-y-6">
-            <h2 className="text-3xl font-extrabold sm:text-4xl bg-clip-text text-transparent bg-gradient-to-b from-white via-zinc-100 to-zinc-400 tracking-tight mb-8">Tranquilidad para dueños y huéspedes en todo el país</h2>
-            {testimonials.map((review, idx) => (
-              <div key={idx} className="border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-6 relative hover:border-cyan-400/40 hover:bg-zinc-900/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] transition-all duration-300 ease-out">
-                <div className="absolute top-6 right-6 flex text-cyan-500">
-                  <Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" />
+          <div className="order-2 lg:order-1 space-y-5">
+            <h2 className="text-3xl font-semibold tracking-tight text-zinc-100 mb-6">
+              <span className="bg-clip-text text-transparent bg-gradient-to-b from-zinc-100 via-zinc-200 to-zinc-400">Tranquilidad para dueños y huéspedes en todo el país</span>
+            </h2>
+            {TESTIMONIALS_DATA.map((review, idx) => (
+              <div key={idx} className="border border-zinc-800/80 bg-zinc-900/30 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] rounded-3xl p-6 relative hover:border-zinc-700 transition-colors duration-200">
+                <div className="absolute top-6 right-6 flex text-amber-400">
+                  <Star className="w-3.5 h-3.5 fill-current" /><Star className="w-3.5 h-3.5 fill-current" /><Star className="w-3.5 h-3.5 fill-current" /><Star className="w-3.5 h-3.5 fill-current" /><Star className="w-3.5 h-3.5 fill-current" />
                 </div>
-                <p className="text-zinc-300 text-lg italic mb-6 w-11/12">&ldquo;{review.text}&rdquo;</p>
+                <p className="text-zinc-300 text-sm italic mb-5 w-11/12">&ldquo;{review.text}&rdquo;</p>
                 <div className="flex items-center">
-                  <div className="h-10 w-10 bg-zinc-800 rounded-full flex items-center justify-center text-cyan-400 font-bold border border-zinc-700">{review.name.charAt(0)}</div>
+                  <div className="h-9 w-9 bg-zinc-900 rounded-full flex items-center justify-center text-cyan-400 font-semibold text-xs border border-zinc-800">{review.name.charAt(0)}</div>
                   <div className="ml-3">
-                    <p className="text-sm font-bold text-white">{review.name}</p>
-                    <p className="text-xs text-zinc-500">{review.role}</p>
+                    <p className="text-xs font-semibold text-zinc-200">{review.name}</p>
+                    <p className="text-[11px] text-zinc-500">{review.role}</p>
                   </div>
                 </div>
               </div>
@@ -712,11 +672,11 @@ function Gallery() {
           </div>
 
           <div className="order-1 lg:order-2 grid grid-cols-2 gap-4">
-            <div className="border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-2 relative h-64 overflow-hidden hover:border-cyan-400/40 transition-all duration-300">
-               <Image src="/hero.png" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover rounded-2xl opacity-80" alt="Instalación KEMA 1" />
+            <div className="border border-zinc-800/80 bg-zinc-900/30 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] rounded-3xl p-2 relative h-60 overflow-hidden hover:border-zinc-700 transition-colors duration-200">
+               <Image src="/hero.png" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover rounded-2xl opacity-70" alt="Instalación KEMA 1" />
             </div>
-            <div className="border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-2 relative h-64 mt-12 overflow-hidden hover:border-cyan-400/40 transition-all duration-300">
-               <Image src="/app.png" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover rounded-2xl opacity-80" alt="Instalación KEMA 2" />
+            <div className="border border-zinc-800/80 bg-zinc-900/30 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] rounded-3xl p-2 relative h-60 mt-10 overflow-hidden hover:border-zinc-700 transition-colors duration-200">
+               <Image src="/app.png" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover rounded-2xl opacity-70" alt="Instalación KEMA 2" />
             </div>
           </div>
 
@@ -731,23 +691,21 @@ function Gallery() {
 // ==========================================
 function WholesaleBanner() {
   const handleWholesaleConsult = () => {
-    const wholesaleMsg = "¡Hola KEMA Locks! 👋 Quisiera consultar la lista de Precios Mayoristas (desde 10 unidades) para obras/profesionales.";
-    const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(wholesaleMsg)}`;
+    const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(WHOLESALE_WA_MESSAGE)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   return (
-    <section className="py-10">
+    <section className="py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="border border-white/[0.08] bg-gradient-to-r from-zinc-900/90 via-zinc-900/60 to-cyan-950/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-8 lg:p-10 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:border-cyan-400/40 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] transition-all duration-300 ease-out">
-          <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none"></div>
+        <div className="border border-zinc-800/80 bg-zinc-900/30 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] rounded-3xl p-7 lg:p-9 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:border-zinc-700 transition-colors duration-200">
           
           <div className="space-y-2 text-center md:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-amber-950/50 text-amber-300 border border-amber-500/30 shadow-[0_0_15px_rgba(245,158,11,0.15)] mb-2">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-xs font-medium bg-zinc-900 border border-zinc-800 text-amber-400 mb-2">
               🏗️ Venta Mayorista & Obras
-            </div>
-            <h3 className="text-2xl md:text-3xl font-extrabold text-white">💰 Precio Mayorista desde 10 unidades</h3>
-            <p className="text-zinc-400 text-sm md:text-base max-w-xl">
+            </span>
+            <h3 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-100">💰 Precio Mayorista desde 10 unidades</h3>
+            <p className="text-zinc-400 text-sm max-w-xl leading-relaxed">
               Ideal para constructoras, arquitectos, cerrajerías y desarrollos inmobiliarios. Asesoramiento directo y lista de precios por volumen.
             </p>
           </div>
@@ -755,10 +713,10 @@ function WholesaleBanner() {
           <button
             type="button"
             onClick={handleWholesaleConsult}
-            className="flex-shrink-0 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-semibold px-6 py-4 rounded-xl shadow-[0_0_20px_rgba(6,182,212,0.35)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] active:scale-[0.98] transition-all duration-300 flex items-center gap-2 cursor-pointer"
+            className="flex-shrink-0 bg-zinc-100 hover:bg-white text-zinc-950 font-medium px-5 py-3 rounded-xl transition-all duration-150 active:scale-[0.98] shadow-sm flex items-center justify-center gap-2 cursor-pointer text-xs"
           >
-            <MessageCircle className="w-5 h-5" />
             <span>Consultar lista mayorista</span>
+            <MessageCircle className="w-4 h-4" />
           </button>
         </div>
       </div>
@@ -770,30 +728,17 @@ function WholesaleBanner() {
 // FAQ ACCORDION
 // ==========================================
 function FAQ() {
-  const faqs: FAQItem[] = [
-    {
-      question: "¿Qué sucede si se agotan las baterías?",
-      answer: "La cerradura KEMA te avisa semanas antes vía voz y en la App. Si ignoras los avisos, todas traen un puerto USB exterior de emergencia para conectar un PowerBank, o bien una llave física oculta de seguridad."
-    },
-    {
-      question: "¿Se puede instalar en puertas de exteriores?",
-      answer: "Sí, pero requiere un modelo específico con certificación IP65 resistente a lluvia y polvo. Asegúrate de aclararlo en la cotización."
-    },
-    {
-      question: "¿Cómo configuro nuevas huellas o códigos?",
-      answer: "Todo se gestiona muy fácilmente desde la App móvil (en español) vía Bluetooth o WiFi. Puedes agregar o borrar usuarios, ver el historial y crear pines temporales."
-    }
-  ];
-
   return (
-    <section id="faq" className="py-20 relative">
+    <section id="faq" className="py-16 relative">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-extrabold sm:text-4xl bg-clip-text text-transparent bg-gradient-to-b from-white via-zinc-100 to-zinc-400 tracking-tight">Preguntas Frecuentes</h2>
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-semibold tracking-tight text-zinc-100">
+            <span className="bg-clip-text text-transparent bg-gradient-to-b from-zinc-100 via-zinc-200 to-zinc-400">Preguntas Frecuentes</span>
+          </h2>
         </div>
         
-        <div className="space-y-4">
-          {faqs.map((faq, idx) => (
+        <div className="space-y-3">
+          {FAQS_DATA.map((faq, idx) => (
             <FaqItem key={idx} question={faq.question} answer={faq.answer} />
           ))}
         </div>
@@ -802,29 +747,29 @@ function FAQ() {
   );
 }
 
-function FaqItem({ question, answer }: FAQItem) {
+function FaqItem({ question, answer }: { question: string; answer: string }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <div className={`border transition-all duration-300 rounded-2xl overflow-hidden ${
+    <div className={`border transition-colors duration-200 rounded-2xl overflow-hidden ${
       isOpen 
-      ? 'border-cyan-400/40 bg-zinc-900/70 shadow-[0_0_20px_rgba(6,182,212,0.1)]' 
-      : 'border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] hover:border-cyan-400/30 hover:bg-zinc-900/60'
+      ? 'border-cyan-500/40 bg-zinc-900/60' 
+      : 'border-zinc-800/80 bg-zinc-900/30 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] hover:border-zinc-700 hover:bg-zinc-900/50'
     }`}>
       <button 
         type="button"
         onClick={() => setIsOpen(!isOpen)} 
-        className="w-full flex justify-between items-center p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-inset rounded-2xl cursor-pointer group"
+        className="w-full flex justify-between items-center p-5 text-left focus:outline-none rounded-2xl cursor-pointer group"
       >
-        <span className={`font-semibold text-lg transition-colors duration-200 ${isOpen ? 'text-cyan-300' : 'text-zinc-200 group-hover:text-white'}`}>{question}</span>
-        <div className={`p-2 rounded-full transition-colors duration-200 ${isOpen ? 'bg-cyan-500/20 text-cyan-400' : 'bg-zinc-800 text-zinc-400 group-hover:text-cyan-400'}`}>
-          <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${isOpen ? 'rotate-180 text-cyan-400' : ''}`} />
+        <span className={`font-medium text-base transition-colors duration-150 ${isOpen ? 'text-cyan-300' : 'text-zinc-200 group-hover:text-zinc-100'}`}>{question}</span>
+        <div className={`p-1.5 rounded-full transition-colors duration-150 ${isOpen ? 'bg-cyan-950 text-cyan-400' : 'bg-zinc-900 text-zinc-500 group-hover:text-zinc-300'}`}>
+          <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180 text-cyan-400' : ''}`} />
         </div>
       </button>
       <div 
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+        className={`overflow-hidden transition-all duration-200 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
       >
-        <p className="p-6 pt-0 text-zinc-400 leading-relaxed border-t border-zinc-800/50 mx-6 mt-2">{answer}</p>
+        <p className="p-5 pt-0 text-zinc-400 text-sm leading-relaxed border-t border-zinc-800/50 mx-5 mt-1">{answer}</p>
       </div>
     </div>
   );
@@ -846,14 +791,13 @@ function FloatingWhatsApp() {
       className="fixed bottom-6 right-6 z-50 group flex items-center justify-center cursor-pointer"
       aria-label="Contactar por WhatsApp KEMA Locks"
     >
-      <div className="absolute inset-0 bg-emerald-500 rounded-full blur opacity-40 group-hover:opacity-70 group-hover:scale-110 transition-all duration-500"></div>
-      <div className="relative bg-emerald-500 text-white p-4 rounded-full shadow-2xl scale-100 group-hover:scale-110 transition-transform duration-300 border border-emerald-400">
-        <MessageCircle className="w-7 h-7" />
+      <div className="relative bg-emerald-600 hover:bg-emerald-500 text-white p-3.5 rounded-full shadow-lg scale-100 group-hover:scale-105 transition-transform duration-150 border border-emerald-500">
+        <MessageCircle className="w-6 h-6" />
       </div>
       {/* Badge Notification */}
-      <span className="absolute -top-1 -right-1 flex h-4 w-4">
+      <span className="absolute -top-0.5 -right-0.5 flex h-3.5 w-3.5">
         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-        <span className="relative inline-flex rounded-full h-4 w-4 bg-red-500 border-2 border-emerald-500"></span>
+        <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-red-500 border-2 border-emerald-600"></span>
       </span>
     </button>
   );
@@ -868,46 +812,46 @@ interface FooterProps {
 
 function Footer({ scrollTo }: FooterProps) {
   return (
-    <footer className="border-t border-white/[0.08] bg-zinc-950 pt-16 pb-8 relative z-10">
+    <footer className="border-t border-zinc-800/80 bg-zinc-950 pt-14 pb-8 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
           <div className="lg:col-span-2">
-            <span className="font-bold text-2xl tracking-tight text-white mb-2 block">
-              KEMA <span className="text-cyan-400 font-medium">Cerraduras Inteligentes</span>
+            <span className="font-semibold text-xl tracking-tight text-zinc-100 mb-2 block">
+              KEMA <span className="text-cyan-400 font-normal">Cerraduras Inteligentes</span>
             </span>
-            <p className="text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-4">
+            <p className="text-cyan-400 text-xs font-mono uppercase tracking-wider mb-3">
               Distribuidor Oficial • Cobertura e Instalaciones en Toda Argentina
             </p>
-            <p className="text-zinc-400 text-sm max-w-sm leading-relaxed">
+            <p className="text-zinc-400 text-xs max-w-sm leading-relaxed">
               Profesionalismo, estética y máxima seguridad. Llevamos la tecnología de accesos inteligentes KEMA a tu hogar u obra con instalación profesional y soporte técnico en todo el país.
             </p>
           </div>
           <div>
-            <h4 className="text-white font-bold mb-4 uppercase text-xs tracking-wider">Enlaces</h4>
-            <ul className="text-zinc-400 text-sm space-y-3">
-              <li><button type="button" onClick={(e) => scrollTo(e, 'modelos')} className="hover:text-cyan-400 transition-colors">Catálogo KEMA</button></li>
-              <li><button type="button" onClick={(e) => scrollTo(e, 'cotizador')} className="hover:text-cyan-400 transition-colors">Cotizador Rápido</button></li>
-              <li><button type="button" onClick={(e) => scrollTo(e, 'faq')} className="hover:text-cyan-400 transition-colors">Preguntas Frecuentes</button></li>
+            <h4 className="text-zinc-200 font-semibold mb-3 uppercase text-xs font-mono tracking-wider">Enlaces</h4>
+            <ul className="text-zinc-400 text-xs space-y-2.5">
+              <li><button type="button" onClick={(e) => scrollTo(e, 'modelos')} className="hover:text-zinc-200 transition-colors">Catálogo KEMA</button></li>
+              <li><button type="button" onClick={(e) => scrollTo(e, 'cotizador')} className="hover:text-zinc-200 transition-colors">Cotizador Rápido</button></li>
+              <li><button type="button" onClick={(e) => scrollTo(e, 'faq')} className="hover:text-zinc-200 transition-colors">Preguntas Frecuentes</button></li>
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-bold mb-4 uppercase text-xs tracking-wider">Contacto Oficial</h4>
+            <h4 className="text-zinc-200 font-semibold mb-3 uppercase text-xs font-mono tracking-wider">Contacto Oficial</h4>
             <a 
               href={`https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(DEFAULT_WA_MESSAGE)}`} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="inline-flex items-center text-sm text-zinc-400 hover:text-emerald-400 transition-colors mb-3"
+              className="inline-flex items-center text-xs text-zinc-400 hover:text-emerald-400 transition-colors mb-2.5"
             >
-              <MessageCircle className="mr-2 w-4 h-4 text-emerald-400" /> {WHATSAPP_DISPLAY}
+              <MessageCircle className="mr-2 w-3.5 h-3.5 text-emerald-400" /> {WHATSAPP_DISPLAY}
             </a>
             <br/>
             <a 
               href={INSTAGRAM_URL} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-zinc-400 hover:text-pink-400 text-sm inline-flex items-center transition-colors mb-3"
+              className="text-zinc-400 hover:text-pink-400 text-xs inline-flex items-center transition-colors mb-2.5"
             >
-              <InstagramIcon className="mr-2 w-4 h-4 text-pink-500" /> @cerradurasinteligentesfcp
+              <InstagramIcon className="mr-2 w-3.5 h-3.5 text-pink-500" /> @cerradurasinteligentesfcp
             </a>
             <br/>
             <span className="inline-flex items-center text-xs text-zinc-500">
@@ -915,9 +859,9 @@ function Footer({ scrollTo }: FooterProps) {
             </span>
           </div>
         </div>
-        <div className="pt-8 border-t border-zinc-800/50 flex flex-col md:flex-row justify-between items-center text-xs text-zinc-500">
+        <div className="pt-6 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center text-xs text-zinc-500">
           <p>© {new Date().getFullYear()} KEMA Cerraduras Inteligentes Argentina. Todos los derechos reservados.</p>
-          <p className="mt-2 md:mt-0">Distribuidor Oficial KEMA</p>
+          <p className="mt-2 md:mt-0 font-mono text-[11px]">Distribuidor Oficial KEMA</p>
         </div>
       </div>
     </footer>
