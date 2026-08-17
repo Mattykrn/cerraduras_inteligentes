@@ -12,7 +12,7 @@ import type { DoorType, AccessMethod, ProductModel, FAQItem, QuoteWizardState } 
 export const WHATSAPP_PHONE = '5493425546013';
 export const WHATSAPP_DISPLAY = '+54 9 342 554-6013';
 export const INSTAGRAM_URL = 'https://www.instagram.com/cerradurasinteligentesfcp/';
-export const DEFAULT_WA_MESSAGE = '¡Hola KEMA Cerraduras Santa Fe! Quisiera consultar por modelos e instalación a domicilio.';
+export const DEFAULT_WA_MESSAGE = '¡Hola KEMA Locks! 👋 Vi la web con Envío + Colocación GRATIS y quisiera consultar por modelos e instalación a domicilio.';
 
 function InstagramIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
@@ -52,7 +52,7 @@ export default function LandingPage() {
       <div className="min-h-screen bg-zinc-950 flex items-center justify-center text-zinc-500">
         <div className="flex items-center space-x-2">
           <ShieldCheck className="w-6 h-6 animate-pulse text-cyan-500" />
-          <span className="text-sm font-medium">Cargando KEMA Locks Santa Fe...</span>
+          <span className="text-sm font-medium">Cargando KEMA Locks...</span>
         </div>
       </div>
     );
@@ -68,12 +68,14 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-zinc-950 text-zinc-100 selection:bg-cyan-500/30 selection:text-cyan-100 relative overflow-x-hidden">
+    <div className="min-h-screen flex flex-col font-sans bg-zinc-950 text-zinc-100 selection:bg-cyan-500/30 selection:text-cyan-100 relative overflow-x-hidden bg-gradient-to-tr from-cyan-950/30 via-zinc-950 to-indigo-950/20">
       
-      {/* Background Gradients */}
+      {/* Background Ambient Lights & Grid Pattern */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900/20 via-transparent to-transparent blur-[100px]"></div>
-        <div className="absolute top-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-900/10 via-transparent to-transparent blur-[120px]"></div>
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900/25 via-transparent to-transparent blur-[100px]"></div>
+        <div className="absolute top-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900/20 via-transparent to-transparent blur-[120px]"></div>
+        <div className="absolute bottom-[-10%] left-[20%] w-[50%] h-[50%] rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-900/15 via-transparent to-transparent blur-[130px]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293710_1px,transparent_1px),linear-gradient(to_bottom,#1f293710_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
       </div>
 
       <Navbar isScrolled={isScrolled} scrollTo={scrollTo} />
@@ -119,7 +121,7 @@ function Navbar({ isScrolled, scrollTo }: NavbarProps) {
       }`}>
         <div className="flex-shrink-0 flex items-center cursor-pointer" onClick={(e) => scrollTo(e, 'cotizador')}>
           <ShieldCheck className="h-6 w-6 text-cyan-500 mr-2" />
-          <span className="font-bold text-lg tracking-tight text-white">KEMA <span className="text-zinc-400 font-medium">Santa Fe</span></span>
+          <span className="font-bold text-lg tracking-tight text-white">KEMA <span className="text-zinc-400 font-medium">Locks</span></span>
         </div>
         
         <nav className="hidden md:flex space-x-6 items-center">
@@ -130,7 +132,7 @@ function Navbar({ isScrolled, scrollTo }: NavbarProps) {
             href={INSTAGRAM_URL} 
             target="_blank" 
             rel="noopener noreferrer" 
-            aria-label="Instagram KEMA Santa Fe"
+            aria-label="Instagram KEMA Locks"
             className="text-zinc-400 hover:text-pink-400 transition-colors p-1"
           >
             <InstagramIcon className="w-5 h-5" />
@@ -189,31 +191,38 @@ interface HeroBentoProps {
 
 function HeroBento({ scrollTo }: HeroBentoProps) {
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 auto-rows-auto">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 relative">
+      {/* Ambient Blur */}
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 auto-rows-auto relative z-10">
         
         {/* Main Title Block */}
-        <div className="col-span-1 md:col-span-2 lg:col-span-3 backdrop-blur-md bg-zinc-900/40 border border-zinc-800/60 rounded-3xl p-8 lg:p-12 flex flex-col justify-center relative overflow-hidden group">
+        <div className="col-span-1 md:col-span-2 lg:col-span-3 backdrop-blur-md bg-zinc-900/40 border border-zinc-800/60 rounded-3xl p-8 lg:p-12 flex flex-col justify-center relative overflow-hidden group hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500">
           <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl group-hover:bg-cyan-500/20 transition-all duration-700"></div>
           
           <div className="flex flex-wrap gap-2 mb-6">
             <div className="inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-semibold text-cyan-400 bg-cyan-950/50 border border-cyan-800/50 backdrop-blur-sm">
-              🤝 Distribuidor Oficial KEMA
-            </div>
-            <div className="inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-semibold text-emerald-400 bg-emerald-950/50 border border-emerald-800/50 backdrop-blur-sm">
-              🛠️ Instalación Profesional en Santa Fe y Zona
+              🤝 Distribuidor Oficial
             </div>
             <div className="inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-semibold text-amber-400 bg-amber-950/50 border border-amber-800/50 backdrop-blur-sm">
-              📦 Stock Disponible Inmediato
+              📦 Stock disponible inmediato
+            </div>
+            <div className="inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-extrabold text-emerald-300 bg-emerald-950/70 border border-emerald-500/60 backdrop-blur-sm shadow-[0_0_12px_rgba(16,185,129,0.3)] animate-pulse">
+              🚚 Envío + Colocación GRATIS
             </div>
           </div>
           
+          <div className="inline-flex items-center text-sm font-semibold text-cyan-400 mb-2">
+            🔐 Convertí tu puerta en inteligente
+          </div>
+
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight mb-6">
             Seguridad inteligente, <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-zinc-300 to-zinc-500">sin complicaciones.</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-200 to-indigo-300">sin complicaciones.</span>
           </h1>
           <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mb-8 leading-relaxed">
-            Distribuidor oficial KEMA en Santa Fe Capital y zona. Instalación impecable, asesoramiento personalizado y garantía directa en cerraduras digitales para puertas de madera, aluminio, chapa y blindex.
+            Distribuidor oficial KEMA en Argentina. Instalación impecable, asesoramiento personalizado y garantía directa en cerraduras digitales para puertas de madera, aluminio, chapa y blindex.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4">
@@ -227,13 +236,13 @@ function HeroBento({ scrollTo }: HeroBentoProps) {
         </div>
 
         {/* Metric Block */}
-        <div className="backdrop-blur-md bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-8 flex flex-col justify-center items-center text-center hover:border-cyan-500/40 transition-all duration-300 group">
+        <div className="backdrop-blur-md bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-8 flex flex-col justify-center items-center text-center hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500 group">
           <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 to-blue-600 mb-2 group-hover:scale-110 transition-transform duration-500">+500</div>
           <div className="text-zinc-400 font-medium">Instalaciones Exitosas</div>
         </div>
 
         {/* Feature Block 1 */}
-        <div className="backdrop-blur-md bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-6 flex items-start space-x-4 hover:border-cyan-500/40 transition-all duration-300">
+        <div className="backdrop-blur-md bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-6 flex items-start space-x-4 hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500">
           <div className="bg-zinc-800/80 p-3 rounded-2xl border border-zinc-700">
             <Wrench className="w-6 h-6 text-cyan-400" />
           </div>
@@ -244,18 +253,18 @@ function HeroBento({ scrollTo }: HeroBentoProps) {
         </div>
 
         {/* Feature Block 2 */}
-        <div className="backdrop-blur-md bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-6 flex items-start space-x-4 hover:border-cyan-500/40 transition-all duration-300">
+        <div className="backdrop-blur-md bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-6 flex items-start space-x-4 hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500">
           <div className="bg-zinc-800/80 p-3 rounded-2xl border border-zinc-700">
             <ShieldCheck className="w-6 h-6 text-emerald-400" />
           </div>
           <div>
             <h3 className="text-white font-bold mb-1">Garantía Real</h3>
-            <p className="text-sm text-zinc-400">Soporte técnico local y repuestos.</p>
+            <p className="text-sm text-zinc-400">Soporte técnico y repuestos.</p>
           </div>
         </div>
 
         {/* Image/Visual Block */}
-        <div className="col-span-1 md:col-span-2 backdrop-blur-md bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-2 relative overflow-hidden min-h-[200px] group">
+        <div className="col-span-1 md:col-span-2 backdrop-blur-md bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-2 relative overflow-hidden min-h-[200px] group hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500">
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent z-10 rounded-3xl"></div>
           <Image src="/hero.png" alt="Instalación Premium KEMA" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover rounded-2xl opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" />
           <div className="absolute bottom-6 left-6 z-20">
@@ -360,12 +369,12 @@ function LeadWizard() {
 
     const modelInfo = selectedModel ? `• Modelo de interés: ${selectedModel}\n` : '';
 
-    const message = `¡Hola KEMA Cerraduras Santa Fe! 👋 Realicé la cotización en su sitio web:\n\n` +
+    const message = `¡Hola KEMA Locks! 👋 Vi la web con Envío + Colocación GRATIS y quiero cotizar:\n\n` +
       `${modelInfo}` +
       `• Material de la puerta: ${doorLabel}\n` +
-      `• Método de apertura preferido: ${methodLabel}\n` +
-      `• Ubicación / Localidad: ${location.trim() || 'Santa Fe Capital / Zona'}\n\n` +
-      `¿Podrían confirmarme opciones compatibles, disponibilidad de instalación y presupuesto final?`;
+      `• Método de apertura: ${methodLabel}\n` +
+      `• Ubicación / Ciudad: ${location.trim() || 'Argentina'}\n\n` +
+      `¿Podrían confirmarme disponibilidad para coordinar?`;
 
     const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(message)}`;
     
@@ -376,14 +385,14 @@ function LeadWizard() {
     <section id="cotizador" className="py-20 relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <div className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold text-emerald-400 bg-emerald-950/30 border border-emerald-800/50 mb-4 backdrop-blur-sm">
-            Filtro Rápido
+          <div className="inline-flex items-center rounded-full px-3.5 py-1 text-xs font-extrabold text-emerald-300 bg-emerald-950/70 border border-emerald-500/50 mb-4 backdrop-blur-sm shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+            🚚 Envío + Colocación GRATIS
           </div>
           <h2 className="text-3xl font-extrabold text-white sm:text-4xl mb-4">Descubre tu modelo ideal en 3 pasos</h2>
-          <p className="text-zinc-400 max-w-2xl mx-auto">Selecciona las opciones para armar tu presupuesto personalizado de equipo KEMA + instalación en Santa Fe y zona.</p>
+          <p className="text-zinc-400 max-w-2xl mx-auto">Selecciona las opciones para armar tu presupuesto personalizado de equipo KEMA + envío e instalación en todo el país.</p>
         </div>
 
-        <div className="backdrop-blur-xl bg-zinc-900/50 border border-zinc-800/80 rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden">
+        <div className="backdrop-blur-xl bg-zinc-900/50 border border-zinc-800/80 rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500">
           {/* Progress Bar */}
           <div className="flex justify-between items-center mb-10 relative px-2">
             <div className="absolute top-1/2 left-4 right-4 h-1 bg-zinc-800 -z-10 -translate-y-1/2 rounded-full"></div>
@@ -462,13 +471,13 @@ function LeadWizard() {
 
             {wizardState.step === 3 && (
               <div className="animate-in fade-in slide-in-from-right-8 duration-500">
-                <h3 className="text-xl font-bold text-white mb-6 text-center">¿En qué zona / localidad te encuentras?</h3>
+                <h3 className="text-xl font-bold text-white mb-6 text-center">¿En qué ciudad / provincia te encuentras?</h3>
                 <form onSubmit={handleQuoteSubmit} className="max-w-md mx-auto w-full">
                   <div className="relative mb-6">
                     <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
                     <input 
                       type="text" 
-                      placeholder="Ej. Santa Fe Capital, Santo Tomé o Esperanza" 
+                      placeholder="Ej: Córdoba, Rosario, Buenos Aires..." 
                       value={wizardState.city}
                       onChange={(e) => setCity(e.target.value)}
                       className="w-full bg-zinc-900/80 border border-zinc-700 rounded-xl pl-12 pr-4 py-4 text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-zinc-600"
@@ -549,7 +558,7 @@ function Catalog() {
   ];
 
   const handleStockConsult = (modelName: string) => {
-    const message = `¡Hola KEMA Cerraduras Santa Fe! Me interesa consultar disponibilidad y precio del modelo ${modelName}`;
+    const message = `¡Hola KEMA Locks! 👋 Vi la web con Envío + Colocación GRATIS y me interesa consultar disponibilidad y precio del modelo ${modelName}`;
     const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(message)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   };
@@ -560,13 +569,13 @@ function Catalog() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <h2 className="text-3xl font-extrabold text-white">Catálogo de Equipos KEMA</h2>
-            <p className="mt-2 text-zinc-400 max-w-2xl">Modelos de alta confiabilidad testeados en campo. Incluyen garantía oficial KEMA y de instalación.</p>
+            <p className="mt-2 text-zinc-400 max-w-2xl">Modelos de alta confiabilidad testeados en campo. Incluyen garantía oficial KEMA y soporte técnico.</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {models.map((product) => (
-            <div key={product.id} className="backdrop-blur-md bg-zinc-900/40 border border-zinc-800/80 rounded-3xl overflow-hidden hover:border-cyan-500/40 transition-all duration-500 group flex flex-col">
+            <div key={product.id} className="backdrop-blur-md bg-zinc-900/40 border border-zinc-800/80 rounded-3xl overflow-hidden hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500 group flex flex-col">
               <div className="relative h-64 w-full bg-zinc-800/50 overflow-hidden p-4">
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/90 to-transparent z-10"></div>
                 <Image src={product.image} alt={product.name} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover object-center opacity-80 group-hover:scale-110 group-hover:opacity-100 transition-all duration-700" />
@@ -588,11 +597,13 @@ function Catalog() {
                   ))}
                 </ul>
                 <div className="pt-5 border-t border-zinc-800/80">
-                  <p className="text-xs text-zinc-500 mb-3 uppercase tracking-wider font-semibold">Incluye Instalación en Santa Fe</p>
+                  <p className="text-xs text-emerald-400 mb-3 uppercase tracking-wider font-extrabold flex items-center gap-1">
+                    <span>🚚 Envío + Colocación GRATIS</span>
+                  </p>
                   <button 
                     type="button"
                     onClick={() => handleStockConsult(product.name)}
-                    className="w-full flex justify-between items-center bg-zinc-800 hover:bg-zinc-100 hover:text-zinc-950 text-white px-5 py-3.5 rounded-xl font-bold transition-all duration-300 active:scale-95"
+                    className="w-full flex justify-between items-center bg-zinc-800 hover:bg-zinc-100 hover:text-zinc-950 text-white px-5 py-3.5 rounded-xl font-bold transition-all duration-300 active:scale-95 cursor-pointer"
                   >
                     <span>Consultar Stock</span>
                     <ArrowRight className="w-5 h-5" />
@@ -644,7 +655,7 @@ function ValueProposition() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {valueProps.map((item, idx) => (
-            <div key={idx} className="backdrop-blur-md bg-zinc-900/40 border border-zinc-800/80 rounded-3xl p-8 hover:bg-zinc-800/50 hover:border-zinc-700 transition-all duration-300 group">
+            <div key={idx} className="backdrop-blur-md bg-zinc-900/40 border border-zinc-800/80 rounded-3xl p-8 hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500 group">
               <div className="bg-zinc-950 border border-zinc-800 rounded-2xl p-4 inline-flex mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                 {item.icon}
               </div>
@@ -669,8 +680,8 @@ interface TestimonialItem {
 
 function Gallery() {
   const testimonials: TestimonialItem[] = [
-    { name: 'Marcos R.', role: 'Consorcio Barrio Candioti', text: 'Impecable. Vino en horario, no ensució nada y nos dejó la cerradura KEMA funcionando con clave para cada vecino.' },
-    { name: 'Luciana G.', role: 'Airbnb Santa Fe', text: 'Me resolvió el tema de las llaves perdidas. Ahora genero un código por reserva desde mi celular y listo. Servicio de 10.' }
+    { name: 'Marcos R.', role: 'Consorcio Residencial', text: 'Impecable. Vino en horario, no ensució nada y nos dejó la cerradura KEMA funcionando con clave para cada vecino.' },
+    { name: 'Luciana G.', role: 'Airbnb Host & Departamentos', text: 'Me resolvió el tema de las llaves perdidas. Ahora genero un código por reserva desde mi celular y listo. Servicio de 10.' }
   ];
 
   return (
@@ -679,9 +690,9 @@ function Gallery() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
           <div className="order-2 lg:order-1 space-y-6">
-            <h2 className="text-3xl font-extrabold text-white mb-8">Tranquilidad para dueños y huéspedes en Santa Fe</h2>
+            <h2 className="text-3xl font-extrabold text-white mb-8">Tranquilidad para dueños y huéspedes en todo el país</h2>
             {testimonials.map((review, idx) => (
-              <div key={idx} className="backdrop-blur-md bg-zinc-900/40 border border-zinc-800/80 rounded-3xl p-6 relative">
+              <div key={idx} className="backdrop-blur-md bg-zinc-900/40 border border-zinc-800/80 rounded-3xl p-6 relative hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500">
                 <div className="absolute top-6 right-6 flex text-cyan-500">
                   <Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" />
                 </div>
@@ -698,10 +709,10 @@ function Gallery() {
           </div>
 
           <div className="order-1 lg:order-2 grid grid-cols-2 gap-4">
-            <div className="backdrop-blur-md bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-2 relative h-64 overflow-hidden">
+            <div className="backdrop-blur-md bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-2 relative h-64 overflow-hidden hover:border-cyan-400/50 transition-all duration-500">
                <Image src="/hero.png" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover rounded-2xl opacity-80" alt="Instalación KEMA 1" />
             </div>
-            <div className="backdrop-blur-md bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-2 relative h-64 mt-12 overflow-hidden">
+            <div className="backdrop-blur-md bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-2 relative h-64 mt-12 overflow-hidden hover:border-cyan-400/50 transition-all duration-500">
                <Image src="/app.png" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover rounded-2xl opacity-80" alt="Instalación KEMA 2" />
             </div>
           </div>
@@ -717,7 +728,7 @@ function Gallery() {
 // ==========================================
 function WholesaleBanner() {
   const handleWholesaleConsult = () => {
-    const wholesaleMsg = "¡Hola KEMA Cerraduras Santa Fe! Quisiera consultar la lista de precios mayoristas (+10 unidades) para profesionales y obras.";
+    const wholesaleMsg = "¡Hola KEMA Locks! 👋 Quisiera consultar la lista de Precios Mayoristas (desde 10 unidades) para obras/profesionales.";
     const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(wholesaleMsg)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   };
@@ -725,16 +736,16 @@ function WholesaleBanner() {
   return (
     <section className="py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="backdrop-blur-xl bg-gradient-to-r from-zinc-900/90 via-zinc-900/60 to-cyan-950/40 border border-cyan-500/30 rounded-3xl p-8 lg:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl relative overflow-hidden">
+        <div className="backdrop-blur-xl bg-gradient-to-r from-zinc-900/90 via-zinc-900/60 to-cyan-950/40 border border-cyan-500/30 rounded-3xl p-8 lg:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl relative overflow-hidden hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500">
           <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none"></div>
           
           <div className="space-y-2 text-center md:text-left">
             <div className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold text-amber-400 bg-amber-950/40 border border-amber-800/50 backdrop-blur-sm mb-2">
               🏗️ Venta Mayorista & Obras
             </div>
-            <h3 className="text-2xl md:text-3xl font-extrabold text-white">¿Constructor, arquitecto o cerrajero?</h3>
+            <h3 className="text-2xl md:text-3xl font-extrabold text-white">💰 Precio Mayorista desde 10 unidades</h3>
             <p className="text-zinc-400 text-sm md:text-base max-w-xl">
-              Consultá precios mayoristas especiales a partir de 10 unidades para proyectos, edificios y revendedores.
+              Ideal para constructoras, arquitectos, cerrajerías y desarrollos inmobiliarios. Asesoramiento directo y lista de precios por volumen.
             </p>
           </div>
 
@@ -744,7 +755,7 @@ function WholesaleBanner() {
             className="flex-shrink-0 bg-gradient-to-r from-emerald-500 to-emerald-400 hover:from-emerald-400 hover:to-emerald-300 text-zinc-950 font-extrabold px-6 py-4 rounded-xl transition-all duration-300 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 scale-100 hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer"
           >
             <MessageCircle className="w-5 h-5" />
-            <span>Consultar Precios Mayoristas</span>
+            <span>Consultar lista mayorista</span>
           </button>
         </div>
       </div>
@@ -792,7 +803,7 @@ function FaqItem({ question, answer }: FAQItem) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <div className={`border transition-colors duration-300 rounded-2xl overflow-hidden ${isOpen ? 'bg-zinc-800/50 border-cyan-500/50' : 'backdrop-blur-md bg-zinc-900/40 border-zinc-800/80 hover:border-zinc-700 hover:bg-zinc-900/60'}`}>
+    <div className={`border transition-all duration-300 rounded-2xl overflow-hidden ${isOpen ? 'bg-zinc-800/50 border-cyan-500/50' : 'backdrop-blur-md bg-zinc-900/40 border-zinc-800/80 hover:border-zinc-700 hover:bg-zinc-900/60'}`}>
       <button 
         type="button"
         onClick={() => setIsOpen(!isOpen)} 
@@ -826,7 +837,7 @@ function FloatingWhatsApp() {
       type="button"
       onClick={openWhatsApp}
       className="fixed bottom-6 right-6 z-50 group flex items-center justify-center cursor-pointer"
-      aria-label="Contactar por WhatsApp KEMA Santa Fe"
+      aria-label="Contactar por WhatsApp KEMA Locks"
     >
       <div className="absolute inset-0 bg-emerald-500 rounded-full blur opacity-40 group-hover:opacity-70 group-hover:scale-110 transition-all duration-500"></div>
       <div className="relative bg-emerald-500 text-white p-4 rounded-full shadow-2xl scale-100 group-hover:scale-110 transition-transform duration-300 border border-emerald-400">
@@ -858,10 +869,10 @@ function Footer({ scrollTo }: FooterProps) {
               KEMA <span className="text-cyan-400 font-medium">Cerraduras Inteligentes</span>
             </span>
             <p className="text-cyan-500 text-xs font-semibold uppercase tracking-wider mb-4">
-              Distribuidor Oficial • Santa Fe Capital y Alrededores (CP 3000)
+              Distribuidor Oficial • Cobertura e Instalaciones en Toda Argentina
             </p>
             <p className="text-zinc-400 text-sm max-w-sm leading-relaxed">
-              Profesionalismo, estética y máxima seguridad. Llevamos la tecnología de accesos inteligentes KEMA a tu hogar u obra con instalación profesional y soporte local.
+              Profesionalismo, estética y máxima seguridad. Llevamos la tecnología de accesos inteligentes KEMA a tu hogar u obra con instalación profesional y soporte técnico en todo el país.
             </p>
           </div>
           <div>
@@ -893,12 +904,12 @@ function Footer({ scrollTo }: FooterProps) {
             </a>
             <br/>
             <span className="inline-flex items-center text-xs text-zinc-500">
-              <MapPin className="mr-1.5 w-3.5 h-3.5 text-zinc-400" /> Santa Fe Capital y Zonas
+              <MapPin className="mr-1.5 w-3.5 h-3.5 text-zinc-400" /> Envíos e Instalaciones en Todo el País
             </span>
           </div>
         </div>
         <div className="pt-8 border-t border-zinc-800/50 flex flex-col md:flex-row justify-between items-center text-xs text-zinc-500">
-          <p>© {new Date().getFullYear()} KEMA Cerraduras Inteligentes Santa Fe. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} KEMA Cerraduras Inteligentes Argentina. Todos los derechos reservados.</p>
           <p className="mt-2 md:mt-0">Distribuidor Oficial KEMA</p>
         </div>
       </div>

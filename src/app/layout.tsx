@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'KEMA Cerraduras Inteligentes Santa Fe | Distribuidor Oficial & Instalaciones',
-  description: 'Distribuidor oficial KEMA en Santa Fe Capital y zona. Soluciones de acceso inteligente y seguridad premium con instalación profesional.',
+  title: 'KEMA Cerraduras Inteligentes | Distribuidor Oficial & Instalaciones en Todo el País',
+  description: 'Distribuidor oficial KEMA en toda Argentina. Soluciones de acceso inteligente y seguridad premium con envíos y servicio de instalación profesional.',
 };
 
 export default function RootLayout({
