@@ -4,7 +4,7 @@ import { useState, useEffect, useSyncExternalStore } from 'react';
 import Image from 'next/image';
 import { 
   ShieldCheck, Wrench, Battery, Smartphone, Key, Fingerprint, 
-  ChevronDown, ChevronUp, CheckCircle, ArrowRight, Star,
+  ChevronDown, CheckCircle, ArrowRight, Star,
   Menu, X, MessageCircle, MapPin
 } from 'lucide-react';
 import type { DoorType, AccessMethod, ProductModel, FAQItem, QuoteWizardState } from '@/types';
@@ -70,12 +70,12 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen flex flex-col font-sans bg-zinc-950 text-zinc-100 selection:bg-cyan-500/30 selection:text-cyan-100 relative overflow-x-hidden bg-gradient-to-tr from-cyan-950/30 via-zinc-950 to-indigo-950/20">
       
-      {/* Background Ambient Lights & Grid Pattern */}
+      {/* Background Ambient Lights & Technical Grid */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900/25 via-transparent to-transparent blur-[100px]"></div>
         <div className="absolute top-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900/20 via-transparent to-transparent blur-[120px]"></div>
         <div className="absolute bottom-[-10%] left-[20%] w-[50%] h-[50%] rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-900/15 via-transparent to-transparent blur-[130px]"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293710_1px,transparent_1px),linear-gradient(to_bottom,#1f293710_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293715_1px,transparent_1px),linear-gradient(to_bottom,#1f293715_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
       </div>
 
       <Navbar isScrolled={isScrolled} scrollTo={scrollTo} />
@@ -116,8 +116,8 @@ function Navbar({ isScrolled, scrollTo }: NavbarProps) {
     <header className={`fixed top-4 inset-x-0 mx-auto max-w-5xl z-50 transition-all duration-300 px-4 sm:px-6 lg:px-8 ${isScrolled ? 'w-[95%]' : 'w-full'}`}>
       <div className={`flex justify-between items-center h-16 px-6 rounded-full border transition-all duration-300 ${
         isScrolled 
-        ? 'bg-zinc-900/80 backdrop-blur-xl border-zinc-800/80 shadow-lg shadow-black/50' 
-        : 'bg-zinc-900/40 backdrop-blur-md border-zinc-800/40'
+        ? 'bg-zinc-900/80 backdrop-blur-xl border-white/[0.12] shadow-2xl shadow-black/80' 
+        : 'bg-zinc-900/40 backdrop-blur-md border-white/[0.08]'
       }`}>
         <div className="flex-shrink-0 flex items-center cursor-pointer" onClick={(e) => scrollTo(e, 'cotizador')}>
           <ShieldCheck className="h-6 w-6 text-cyan-500 mr-2" />
@@ -137,7 +137,7 @@ function Navbar({ isScrolled, scrollTo }: NavbarProps) {
           >
             <InstagramIcon className="w-5 h-5" />
           </a>
-          <button type="button" onClick={handleNavWhatsApp} className="bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white font-semibold px-5 py-2 rounded-full transition-all shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 scale-100 hover:scale-105 active:scale-95 text-sm flex items-center gap-1.5">
+          <button type="button" onClick={handleNavWhatsApp} className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-semibold px-5 py-2 rounded-full transition-all shadow-[0_0_20px_rgba(6,182,212,0.35)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] active:scale-[0.98] text-sm flex items-center gap-1.5 cursor-pointer">
             <MessageCircle className="w-4 h-4" />
             <span>Contacto Directo</span>
           </button>
@@ -156,7 +156,7 @@ function Navbar({ isScrolled, scrollTo }: NavbarProps) {
       </div>
 
       {/* Mobile menu dropdown */}
-      <div className={`md:hidden absolute top-20 left-4 right-4 rounded-2xl bg-zinc-900/95 backdrop-blur-xl border border-zinc-800/80 overflow-hidden transition-all duration-300 origin-top ${
+      <div className={`md:hidden absolute top-20 left-4 right-4 rounded-2xl bg-zinc-900/95 backdrop-blur-xl border border-white/[0.1] overflow-hidden transition-all duration-300 origin-top ${
         isMenuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'
       }`}>
         <div className="px-4 py-5 space-y-4 flex flex-col text-left">
@@ -172,7 +172,7 @@ function Navbar({ isScrolled, scrollTo }: NavbarProps) {
           >
             <InstagramIcon className="w-5 h-5 text-pink-400" /> Instagram
           </a>
-          <button type="button" onClick={() => { setIsMenuOpen(false); handleNavWhatsApp(); }} className="bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 font-bold py-3 rounded-xl mt-2 w-full text-center flex items-center justify-center gap-2">
+          <button type="button" onClick={() => { setIsMenuOpen(false); handleNavWhatsApp(); }} className="bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-bold py-3 rounded-xl mt-2 w-full text-center flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20">
             <MessageCircle className="w-5 h-5" />
             Contacto Directo WhatsApp
           </button>
@@ -192,23 +192,23 @@ interface HeroBentoProps {
 function HeroBento({ scrollTo }: HeroBentoProps) {
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 relative">
-      {/* Ambient Blur */}
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+      {/* Hero Atmospheric Glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-gradient-to-tr from-cyan-500/15 to-blue-600/10 blur-[130px] rounded-full pointer-events-none -z-10" />
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 auto-rows-auto relative z-10">
         
         {/* Main Title Block */}
-        <div className="col-span-1 md:col-span-2 lg:col-span-3 backdrop-blur-md bg-zinc-900/40 border border-zinc-800/60 rounded-3xl p-8 lg:p-12 flex flex-col justify-center relative overflow-hidden group hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500">
+        <div className="col-span-1 md:col-span-2 lg:col-span-3 border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-8 lg:p-12 flex flex-col justify-center relative overflow-hidden group hover:border-cyan-400/40 hover:bg-zinc-900/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] hover:-translate-y-1 transition-all duration-300 ease-out">
           <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl group-hover:bg-cyan-500/20 transition-all duration-700"></div>
           
           <div className="flex flex-wrap gap-2 mb-6">
-            <div className="inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-semibold text-cyan-400 bg-cyan-950/50 border border-cyan-800/50 backdrop-blur-sm">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium bg-cyan-950/50 text-cyan-300 border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
               🤝 Distribuidor Oficial
             </div>
-            <div className="inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-semibold text-amber-400 bg-amber-950/50 border border-amber-800/50 backdrop-blur-sm">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium bg-amber-950/50 text-amber-300 border border-amber-500/30 shadow-[0_0_15px_rgba(245,158,11,0.15)]">
               📦 Stock disponible inmediato
             </div>
-            <div className="inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-extrabold text-emerald-300 bg-emerald-950/70 border border-emerald-500/60 backdrop-blur-sm shadow-[0_0_12px_rgba(16,185,129,0.3)] animate-pulse">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-950/60 text-emerald-300 border border-emerald-500/40 shadow-[0_0_15px_rgba(16,185,129,0.25)] animate-pulse">
               🚚 Envío + Colocación GRATIS
             </div>
           </div>
@@ -219,30 +219,30 @@ function HeroBento({ scrollTo }: HeroBentoProps) {
 
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight mb-6">
             Seguridad inteligente, <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-200 to-indigo-300">sin complicaciones.</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-zinc-100 to-zinc-400 tracking-tight">sin complicaciones.</span>
           </h1>
           <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mb-8 leading-relaxed">
             Distribuidor oficial KEMA en Argentina. Instalación impecable, asesoramiento personalizado y garantía directa en cerraduras digitales para puertas de madera, aluminio, chapa y blindex.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4">
-            <button type="button" onClick={(e) => scrollTo(e, 'cotizador')} className="inline-flex justify-center items-center px-8 py-3.5 rounded-xl bg-white text-zinc-950 font-bold hover:bg-zinc-200 transition-colors">
+            <button type="button" onClick={(e) => scrollTo(e, 'cotizador')} className="inline-flex justify-center items-center px-8 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-semibold shadow-[0_0_20px_rgba(6,182,212,0.35)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] active:scale-[0.98] transition-all duration-300 cursor-pointer">
               Calcular Presupuesto <ArrowRight className="ml-2 w-5 h-5" />
             </button>
-            <button type="button" onClick={(e) => scrollTo(e, 'modelos')} className="inline-flex justify-center items-center px-8 py-3.5 rounded-xl bg-zinc-800/50 text-white font-medium border border-zinc-700/50 hover:bg-zinc-800 transition-colors">
+            <button type="button" onClick={(e) => scrollTo(e, 'modelos')} className="inline-flex justify-center items-center px-8 py-3.5 rounded-xl bg-zinc-800/60 text-white font-medium border border-zinc-700/60 hover:bg-zinc-800 transition-all duration-300 cursor-pointer">
               Ver Catálogo KEMA
             </button>
           </div>
         </div>
 
         {/* Metric Block */}
-        <div className="backdrop-blur-md bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-8 flex flex-col justify-center items-center text-center hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500 group">
+        <div className="border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-8 flex flex-col justify-center items-center text-center hover:border-cyan-400/40 hover:bg-zinc-900/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] hover:-translate-y-1 transition-all duration-300 ease-out group">
           <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 to-blue-600 mb-2 group-hover:scale-110 transition-transform duration-500">+500</div>
           <div className="text-zinc-400 font-medium">Instalaciones Exitosas</div>
         </div>
 
         {/* Feature Block 1 */}
-        <div className="backdrop-blur-md bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-6 flex items-start space-x-4 hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500">
+        <div className="border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-6 flex items-start space-x-4 hover:border-cyan-400/40 hover:bg-zinc-900/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] hover:-translate-y-1 transition-all duration-300 ease-out">
           <div className="bg-zinc-800/80 p-3 rounded-2xl border border-zinc-700">
             <Wrench className="w-6 h-6 text-cyan-400" />
           </div>
@@ -253,7 +253,7 @@ function HeroBento({ scrollTo }: HeroBentoProps) {
         </div>
 
         {/* Feature Block 2 */}
-        <div className="backdrop-blur-md bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-6 flex items-start space-x-4 hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500">
+        <div className="border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-6 flex items-start space-x-4 hover:border-cyan-400/40 hover:bg-zinc-900/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] hover:-translate-y-1 transition-all duration-300 ease-out">
           <div className="bg-zinc-800/80 p-3 rounded-2xl border border-zinc-700">
             <ShieldCheck className="w-6 h-6 text-emerald-400" />
           </div>
@@ -264,7 +264,7 @@ function HeroBento({ scrollTo }: HeroBentoProps) {
         </div>
 
         {/* Image/Visual Block */}
-        <div className="col-span-1 md:col-span-2 backdrop-blur-md bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-2 relative overflow-hidden min-h-[200px] group hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500">
+        <div className="col-span-1 md:col-span-2 border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-2 relative overflow-hidden min-h-[200px] group hover:border-cyan-400/40 hover:bg-zinc-900/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] hover:-translate-y-1 transition-all duration-300 ease-out">
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent z-10 rounded-3xl"></div>
           <Image src="/hero.png" alt="Instalación Premium KEMA" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover rounded-2xl opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" />
           <div className="absolute bottom-6 left-6 z-20">
@@ -383,16 +383,19 @@ function LeadWizard() {
 
   return (
     <section id="cotizador" className="py-20 relative">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Wizard Atmospheric Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-emerald-500/10 blur-[140px] rounded-full pointer-events-none -z-10" />
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-10">
-          <div className="inline-flex items-center rounded-full px-3.5 py-1 text-xs font-extrabold text-emerald-300 bg-emerald-950/70 border border-emerald-500/50 mb-4 backdrop-blur-sm shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-950/60 text-emerald-300 border border-emerald-500/40 shadow-[0_0_15px_rgba(16,185,129,0.25)] animate-pulse mb-4">
             🚚 Envío + Colocación GRATIS
           </div>
-          <h2 className="text-3xl font-extrabold text-white sm:text-4xl mb-4">Descubre tu modelo ideal en 3 pasos</h2>
+          <h2 className="text-3xl font-extrabold sm:text-4xl mb-4 bg-clip-text text-transparent bg-gradient-to-b from-white via-zinc-100 to-zinc-400 tracking-tight">Descubre tu modelo ideal en 3 pasos</h2>
           <p className="text-zinc-400 max-w-2xl mx-auto">Selecciona las opciones para armar tu presupuesto personalizado de equipo KEMA + envío e instalación en todo el país.</p>
         </div>
 
-        <div className="backdrop-blur-xl bg-zinc-900/50 border border-zinc-800/80 rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500">
+        <div className="border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-6 md:p-10 relative overflow-hidden hover:border-cyan-400/40 hover:bg-zinc-900/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] transition-all duration-300 ease-out">
           {/* Progress Bar */}
           <div className="flex justify-between items-center mb-10 relative px-2">
             <div className="absolute top-1/2 left-4 right-4 h-1 bg-zinc-800 -z-10 -translate-y-1/2 rounded-full"></div>
@@ -420,7 +423,7 @@ function LeadWizard() {
 
           <div className="min-h-[260px] flex flex-col justify-center relative">
             {wizardState.step === 1 && (
-              <div className="animate-in fade-in slide-in-from-right-8 duration-500">
+              <div className="animate-in fade-in slide-in-from-right-8 duration-300 ease-in-out">
                 <h3 className="text-xl font-bold text-white mb-6 text-center flex items-center justify-center">
                   ¿De qué material es tu puerta principal?
                 </h3>
@@ -445,7 +448,7 @@ function LeadWizard() {
             )}
 
             {wizardState.step === 2 && (
-              <div className="animate-in fade-in slide-in-from-right-8 duration-500">
+              <div className="animate-in fade-in slide-in-from-right-8 duration-300 ease-in-out">
                 <h3 className="text-xl font-bold text-white mb-6 text-center">¿Cómo te gustaría abrir la puerta principalmente?</h3>
                 <div className="grid grid-cols-2 gap-3 md:gap-4">
                   {accessOptions.map(option => (
@@ -470,7 +473,7 @@ function LeadWizard() {
             )}
 
             {wizardState.step === 3 && (
-              <div className="animate-in fade-in slide-in-from-right-8 duration-500">
+              <div className="animate-in fade-in slide-in-from-right-8 duration-300 ease-in-out">
                 <h3 className="text-xl font-bold text-white mb-6 text-center">¿En qué ciudad / provincia te encuentras?</h3>
                 <form onSubmit={handleQuoteSubmit} className="max-w-md mx-auto w-full">
                   <div className="relative mb-6">
@@ -488,8 +491,8 @@ function LeadWizard() {
                     disabled={wizardState.city.trim().length < 2}
                     className={`w-full flex items-center justify-center px-6 py-4 rounded-xl font-bold transition-all duration-300 ${
                       wizardState.city.trim().length >= 2 
-                      ? 'bg-gradient-to-r from-emerald-500 to-emerald-400 hover:from-emerald-400 hover:to-emerald-300 text-zinc-950 shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)] scale-100 hover:scale-[1.02] active:scale-95 cursor-pointer' 
-                      : 'bg-zinc-800 text-zinc-500 cursor-not-allowed border border-zinc-700'
+                      ? 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-semibold shadow-[0_0_20px_rgba(6,182,212,0.35)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] active:scale-[0.98] cursor-pointer' 
+                      : 'bg-zinc-800/80 text-zinc-500 cursor-not-allowed border border-zinc-700/50'
                     }`}
                   >
                     <MessageCircle className="mr-2 w-5 h-5" />
@@ -568,14 +571,14 @@ function Catalog() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
-            <h2 className="text-3xl font-extrabold text-white">Catálogo de Equipos KEMA</h2>
+            <h2 className="text-3xl font-extrabold sm:text-4xl bg-clip-text text-transparent bg-gradient-to-b from-white via-zinc-100 to-zinc-400 tracking-tight">Catálogo de Equipos KEMA</h2>
             <p className="mt-2 text-zinc-400 max-w-2xl">Modelos de alta confiabilidad testeados en campo. Incluyen garantía oficial KEMA y soporte técnico.</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {models.map((product) => (
-            <div key={product.id} className="backdrop-blur-md bg-zinc-900/40 border border-zinc-800/80 rounded-3xl overflow-hidden hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500 group flex flex-col">
+            <div key={product.id} className="border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl overflow-hidden hover:border-cyan-400/40 hover:bg-zinc-900/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] hover:-translate-y-1 transition-all duration-300 ease-out group flex flex-col">
               <div className="relative h-64 w-full bg-zinc-800/50 overflow-hidden p-4">
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/90 to-transparent z-10"></div>
                 <Image src={product.image} alt={product.name} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover object-center opacity-80 group-hover:scale-110 group-hover:opacity-100 transition-all duration-700" />
@@ -603,7 +606,7 @@ function Catalog() {
                   <button 
                     type="button"
                     onClick={() => handleStockConsult(product.name)}
-                    className="w-full flex justify-between items-center bg-zinc-800 hover:bg-zinc-100 hover:text-zinc-950 text-white px-5 py-3.5 rounded-xl font-bold transition-all duration-300 active:scale-95 cursor-pointer"
+                    className="w-full flex justify-between items-center bg-zinc-800/80 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-600 hover:text-black text-white px-5 py-3.5 rounded-xl font-bold transition-all duration-300 active:scale-95 cursor-pointer shadow-md"
                   >
                     <span>Consultar Stock</span>
                     <ArrowRight className="w-5 h-5" />
@@ -650,12 +653,12 @@ function ValueProposition() {
     <section id="como-funciona" className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-extrabold text-white">Por qué elegir un instalador oficial KEMA</h2>
+          <h2 className="text-3xl font-extrabold sm:text-4xl bg-clip-text text-transparent bg-gradient-to-b from-white via-zinc-100 to-zinc-400 tracking-tight">Por qué elegir un instalador oficial KEMA</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {valueProps.map((item, idx) => (
-            <div key={idx} className="backdrop-blur-md bg-zinc-900/40 border border-zinc-800/80 rounded-3xl p-8 hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500 group">
+            <div key={idx} className="border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-8 hover:border-cyan-400/40 hover:bg-zinc-900/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] hover:-translate-y-1 transition-all duration-300 ease-out group">
               <div className="bg-zinc-950 border border-zinc-800 rounded-2xl p-4 inline-flex mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                 {item.icon}
               </div>
@@ -690,9 +693,9 @@ function Gallery() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
           <div className="order-2 lg:order-1 space-y-6">
-            <h2 className="text-3xl font-extrabold text-white mb-8">Tranquilidad para dueños y huéspedes en todo el país</h2>
+            <h2 className="text-3xl font-extrabold sm:text-4xl bg-clip-text text-transparent bg-gradient-to-b from-white via-zinc-100 to-zinc-400 tracking-tight mb-8">Tranquilidad para dueños y huéspedes en todo el país</h2>
             {testimonials.map((review, idx) => (
-              <div key={idx} className="backdrop-blur-md bg-zinc-900/40 border border-zinc-800/80 rounded-3xl p-6 relative hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500">
+              <div key={idx} className="border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-6 relative hover:border-cyan-400/40 hover:bg-zinc-900/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] transition-all duration-300 ease-out">
                 <div className="absolute top-6 right-6 flex text-cyan-500">
                   <Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" />
                 </div>
@@ -709,10 +712,10 @@ function Gallery() {
           </div>
 
           <div className="order-1 lg:order-2 grid grid-cols-2 gap-4">
-            <div className="backdrop-blur-md bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-2 relative h-64 overflow-hidden hover:border-cyan-400/50 transition-all duration-500">
+            <div className="border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-2 relative h-64 overflow-hidden hover:border-cyan-400/40 transition-all duration-300">
                <Image src="/hero.png" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover rounded-2xl opacity-80" alt="Instalación KEMA 1" />
             </div>
-            <div className="backdrop-blur-md bg-zinc-900/60 border border-zinc-800/80 rounded-3xl p-2 relative h-64 mt-12 overflow-hidden hover:border-cyan-400/50 transition-all duration-500">
+            <div className="border border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-2 relative h-64 mt-12 overflow-hidden hover:border-cyan-400/40 transition-all duration-300">
                <Image src="/app.png" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover rounded-2xl opacity-80" alt="Instalación KEMA 2" />
             </div>
           </div>
@@ -736,11 +739,11 @@ function WholesaleBanner() {
   return (
     <section className="py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="backdrop-blur-xl bg-gradient-to-r from-zinc-900/90 via-zinc-900/60 to-cyan-950/40 border border-cyan-500/30 rounded-3xl p-8 lg:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl relative overflow-hidden hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)] transition-all duration-500">
+        <div className="border border-white/[0.08] bg-gradient-to-r from-zinc-900/90 via-zinc-900/60 to-cyan-950/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] rounded-3xl p-8 lg:p-10 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:border-cyan-400/40 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] transition-all duration-300 ease-out">
           <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none"></div>
           
           <div className="space-y-2 text-center md:text-left">
-            <div className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold text-amber-400 bg-amber-950/40 border border-amber-800/50 backdrop-blur-sm mb-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-amber-950/50 text-amber-300 border border-amber-500/30 shadow-[0_0_15px_rgba(245,158,11,0.15)] mb-2">
               🏗️ Venta Mayorista & Obras
             </div>
             <h3 className="text-2xl md:text-3xl font-extrabold text-white">💰 Precio Mayorista desde 10 unidades</h3>
@@ -752,7 +755,7 @@ function WholesaleBanner() {
           <button
             type="button"
             onClick={handleWholesaleConsult}
-            className="flex-shrink-0 bg-gradient-to-r from-emerald-500 to-emerald-400 hover:from-emerald-400 hover:to-emerald-300 text-zinc-950 font-extrabold px-6 py-4 rounded-xl transition-all duration-300 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 scale-100 hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer"
+            className="flex-shrink-0 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-semibold px-6 py-4 rounded-xl shadow-[0_0_20px_rgba(6,182,212,0.35)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] active:scale-[0.98] transition-all duration-300 flex items-center gap-2 cursor-pointer"
           >
             <MessageCircle className="w-5 h-5" />
             <span>Consultar lista mayorista</span>
@@ -786,7 +789,7 @@ function FAQ() {
     <section id="faq" className="py-20 relative">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-extrabold text-white">Preguntas Frecuentes</h2>
+          <h2 className="text-3xl font-extrabold sm:text-4xl bg-clip-text text-transparent bg-gradient-to-b from-white via-zinc-100 to-zinc-400 tracking-tight">Preguntas Frecuentes</h2>
         </div>
         
         <div className="space-y-4">
@@ -803,15 +806,19 @@ function FaqItem({ question, answer }: FAQItem) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <div className={`border transition-all duration-300 rounded-2xl overflow-hidden ${isOpen ? 'bg-zinc-800/50 border-cyan-500/50' : 'backdrop-blur-md bg-zinc-900/40 border-zinc-800/80 hover:border-zinc-700 hover:bg-zinc-900/60'}`}>
+    <div className={`border transition-all duration-300 rounded-2xl overflow-hidden ${
+      isOpen 
+      ? 'border-cyan-400/40 bg-zinc-900/70 shadow-[0_0_20px_rgba(6,182,212,0.1)]' 
+      : 'border-white/[0.08] bg-zinc-900/40 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] hover:border-cyan-400/30 hover:bg-zinc-900/60'
+    }`}>
       <button 
         type="button"
         onClick={() => setIsOpen(!isOpen)} 
-        className="w-full flex justify-between items-center p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-inset rounded-2xl"
+        className="w-full flex justify-between items-center p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-inset rounded-2xl cursor-pointer group"
       >
-        <span className={`font-semibold transition-colors duration-300 ${isOpen ? 'text-white' : 'text-zinc-300'}`}>{question}</span>
-        <div className={`p-1 rounded-full transition-colors duration-300 ${isOpen ? 'bg-cyan-500/20 text-cyan-400' : 'bg-zinc-800 text-zinc-500'}`}>
-          {isOpen ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+        <span className={`font-semibold text-lg transition-colors duration-200 ${isOpen ? 'text-cyan-300' : 'text-zinc-200 group-hover:text-white'}`}>{question}</span>
+        <div className={`p-2 rounded-full transition-colors duration-200 ${isOpen ? 'bg-cyan-500/20 text-cyan-400' : 'bg-zinc-800 text-zinc-400 group-hover:text-cyan-400'}`}>
+          <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${isOpen ? 'rotate-180 text-cyan-400' : ''}`} />
         </div>
       </button>
       <div 
@@ -861,14 +868,14 @@ interface FooterProps {
 
 function Footer({ scrollTo }: FooterProps) {
   return (
-    <footer className="border-t border-zinc-800/80 bg-zinc-950 pt-16 pb-8 relative z-10">
+    <footer className="border-t border-white/[0.08] bg-zinc-950 pt-16 pb-8 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div className="lg:col-span-2">
             <span className="font-bold text-2xl tracking-tight text-white mb-2 block">
               KEMA <span className="text-cyan-400 font-medium">Cerraduras Inteligentes</span>
             </span>
-            <p className="text-cyan-500 text-xs font-semibold uppercase tracking-wider mb-4">
+            <p className="text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-4">
               Distribuidor Oficial • Cobertura e Instalaciones en Toda Argentina
             </p>
             <p className="text-zinc-400 text-sm max-w-sm leading-relaxed">
